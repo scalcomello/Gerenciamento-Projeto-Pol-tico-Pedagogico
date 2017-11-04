@@ -2,7 +2,7 @@
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
         <!--  Ano.Mes.Dia.Estado.-->
-        <b>Versão</b> 17.7.25-Alpha
+        <b>Versão</b> 17.03.11-Beta
     </div>
     <strong>Desenvolvido por: <a href="#">Tiago Scalco</a> - Copyright © 2016-2017. Todos os direitos
         reservados.</strong>
@@ -47,6 +47,8 @@
             }
         });
     });
+
+   
 </script>
 
 <!-- DataTables -->

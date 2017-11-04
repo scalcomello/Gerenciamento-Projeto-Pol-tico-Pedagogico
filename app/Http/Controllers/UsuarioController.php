@@ -18,7 +18,10 @@ class UsuarioController extends Controller
 
         public function index()
     {
-        $users = Usuarios::all();
+       // $users = Usuarios::all();
+        $users = Usuarios::
+            orderBy('name', 'asc')
+            ->get();
 
         return view('usuarios.usuarios')->with('usuarios', $users);
 

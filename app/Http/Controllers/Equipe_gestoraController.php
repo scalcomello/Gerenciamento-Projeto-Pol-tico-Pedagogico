@@ -23,8 +23,7 @@ class Equipe_gestoraController extends Controller
         $pesquisa = Equipegestora::where('categoria', '=', 'pesquisa')->with('pessoa')->get();
         $extensao = Equipegestora::where('categoria', '=', 'extensao')->with('pessoa')->get();
         $diretor = Equipegestora::where('categoria', '=', 'diretor')->with('pessoa')->get();
-        $pessoas_nome = Pessoa::pluck('nome','id');
-
+        $pessoas_nome = Pessoa::orderBy('nome', 'asc')->pluck('nome','id');
 
         return view('equipegestora')->with('desenvolvimento_educacional', $desenvolvimento_educacional)
             ->with('administracao_planejamento', $administracao_planejamento)

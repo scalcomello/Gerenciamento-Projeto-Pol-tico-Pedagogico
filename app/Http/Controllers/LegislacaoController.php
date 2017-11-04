@@ -28,7 +28,7 @@ class LegislacaoController extends Controller
     {
         $validator = validator($request->all(), [
 
-            'lei' => 'required|string|min:3|max:250',
+            'lei' => 'required|string|min:3|max:250|unique:legislacaos',
             'ementa' => 'required|string|min:3|max:5550'
 
         ]);

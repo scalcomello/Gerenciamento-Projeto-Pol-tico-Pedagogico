@@ -33,7 +33,9 @@ class ConselhosuperiorController extends Controller
         $patronal = Conselho::where('titulo', '=', 'patronal')->with('pessoa')->get();
         $membros_natos = Conselho::where('titulo', '=', 'mebros_natos')->with('pessoa')->get();
 
-        $pessoas_nome = Pessoa::pluck('nome','id');
+        $pessoas_nome = Pessoa::orderBy('nome', 'asc')->pluck('nome','id');
+
+
 
 
         return view('conselhosuperior')->with('presidente', $presidente)

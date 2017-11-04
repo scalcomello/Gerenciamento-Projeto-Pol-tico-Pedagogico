@@ -6,6 +6,7 @@ use App\Diretores_de_campi as Diretores;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
+use App\Pessoa;
 
 class Diretores_de_campiController extends Controller
 {
@@ -19,8 +20,11 @@ class Diretores_de_campiController extends Controller
     {
 
         $diretores = Diretores::all();
+        $pessoas_nome = Pessoa::orderBy('nome', 'asc')->pluck('nome','id');
 
-        return view('diretoresdecampi')->with('diretores', $diretores);
+        return view('diretoresdecampi')
+            ->with('pessoas_nome', $pessoas_nome)
+            ->with('diretores', $diretores);
 
     }
 

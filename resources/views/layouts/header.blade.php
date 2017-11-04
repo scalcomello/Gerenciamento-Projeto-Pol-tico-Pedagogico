@@ -19,6 +19,7 @@
     <link href="{{ asset("/plugins/jvectormap/jquery-jvectormap-1.2.2.css") }}" rel="stylesheet" type="text/css"/>
     <!-- Theme style -->
     <link href="{{ asset("/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset("/dist/jquery.loading.css")}}" rel="stylesheet" type="text/css"/>
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
@@ -27,7 +28,7 @@
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+    <!--[if lt IE 9]-->
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
@@ -42,6 +43,7 @@
     <link rel="stylesheet" href="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <!-- Pace style -->
     <link rel="stylesheet" href="/plugins/pace/pace.min.css">
+
 
 
 

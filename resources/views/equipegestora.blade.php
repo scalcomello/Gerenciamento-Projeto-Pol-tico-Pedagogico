@@ -53,7 +53,7 @@
                                 <div class="form-group{{ $errors->has('pessoas_id') ? ' has-error' : '' }}">
                                     {!!  Form::label('pessoas_id','Nome',array('class' => 'col-sm-2 control-label')) !!}
                                     <div class="col-sm-6">
-                                        {{ Form::select('pessoas_id' ,$pessoas_nome,null,['class' => 'selectpicker','data-live-search'=> 'true'])  }}
+                                        {{ Form::select('pessoas_id' ,$pessoas_nome,null,['class' => 'selectpicker','data-live-search'=> 'true', 'data-width'=>'auto'])  }}
                                         @if ($errors->has('pessoas_id'))
                                             <span class="help-block"><strong>{{ $errors->first('pessoas_id') }}</strong></span>
                                         @endif
@@ -71,7 +71,7 @@
                                                                         'pesquisa' => 'Coordenador Geral de Pesquisa',
                                                                         'extensao' => 'Coordenado Geral de Extensão'
 
-                                                                        ],null,['class' => 'selectpicker','data-live-search'=> 'true'])
+                                                                        ],null,['class' => 'selectpicker','data-live-search'=> 'true', 'data-width'=>'auto'])
                                                                      }}
 
                                         @if ($errors->has('categoria'))
@@ -82,6 +82,7 @@
 
                                 <div class="box-footer">
                                     @if(Request::is('*/editar'))
+                                        <a class="btn btn-default btn-close" href="{{ route('equipegestora.index') }}">Cancelar</a>
                                         {!! Form::submit('Atualziar', ['class' => 'btn btn-info' ]) !!}
                                     @else
                                         {!! Form::submit('Cadastrar', ['class' => 'btn btn-info' ]) !!}

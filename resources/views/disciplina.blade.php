@@ -67,6 +67,7 @@
 
                                 <div class="box-footer">
                                     @if(Request::is('*/editar'))
+                                        <a class="btn btn-default btn-close" href="{{ route('disciplina.index') }}">Cancelar</a>
                                         {!! Form::submit('Atualziar', ['class' => 'btn btn-info' ]) !!}
                                     @else
                                         {!! Form::submit('Cadastrar', ['class' => 'btn btn-info' ]) !!}

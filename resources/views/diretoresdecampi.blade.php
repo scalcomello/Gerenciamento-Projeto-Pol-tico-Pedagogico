@@ -50,15 +50,15 @@
 
                                 @endif
 
-                                <div class="form-group{{ $errors->has('diretor') ? ' has-error' : '' }}">
-                                    {!!  Form::label('diretor','Diretor',array('class' => 'col-sm-2 control-label')) !!}
-                                    <div class="col-sm-6">
-                                        {!! Form::input('text','diretor',old('diretor'),array('class' => 'form-control','placeholder' => 'Nome do diretor do campi'))!!}
-                                        @if ($errors->has('diretor'))
-                                            <span class="help-block"><strong>{{ $errors->first('diretor') }}</strong></span>
-                                        @endif
+                                    <div class="form-group{{ $errors->has('diretor') ? ' has-error' : '' }}">
+                                        {!!  Form::label('diretor','Diretor',array('class' => 'col-sm-2 control-label')) !!}
+                                        <div class="col-sm-6">
+                                            {{ Form::select('diretor' ,$pessoas_nome,null,['class' => 'selectpicker','data-live-search'=> 'true', 'data-width'=>'auto'])  }}
+                                            @if ($errors->has('diretor'))
+                                                <span class="help-block"><strong>{{ $errors->first('diretor') }}</strong></span>
+                                            @endif
+                                        </div>
                                     </div>
-                                </div>
 
                                 <div class="form-group{{ $errors->has('campi') ? ' has-error' : '' }}">
                                     {!!  Form::label('campi','Campi',array('class' => 'col-sm-2 control-label')) !!}
@@ -72,6 +72,7 @@
 
                                 <div class="box-footer">
                                     @if(Request::is('*/editar'))
+                                        <a class="btn btn-default btn-close" href="{{ route('diretores.index') }}">Cancelar</a>
                                         {!! Form::submit('Atualziar', ['class' => 'btn btn-info' ]) !!}
                                     @else
                                         {!! Form::submit('Cadastrar', ['class' => 'btn btn-info' ]) !!}

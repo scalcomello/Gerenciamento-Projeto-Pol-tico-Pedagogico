@@ -18,6 +18,8 @@
     <section class="content">
         <div class="row">
 
+
+
             <div class="col-md-12">
                 <div class="box box-primary">
                     <div class="box-header">
@@ -48,13 +50,14 @@
 
                                 <script>
 
-                                    $('.selectpicker').addClass('col-lg-12').selectpicker('setStyle');
+                                    $('.selectpicker').addClass('col-sm-2').selectpicker('setStyle');
                                 </script>
 
                                 <div class="form-group{{ $errors->has('pessoas_id') ? ' has-error' : '' }}">
                                     {!!  Form::label('pessoas_id','Nome',array('class' => 'col-sm-2 control-label')) !!}
                                     <div class="col-sm-6">
-                                        {{ Form::select('pessoas_id' ,$pessoas_nome,null,['class' => 'selectpicker','data-live-search'=> 'true'])  }}
+
+                                        {{ Form::select('pessoas_id' ,$pessoas_nome,null,['class' => 'selectpicker','data-live-search'=> 'true','data-show-subtext' => 'true', 'data-width'=>'auto'])  }}
                                         @if ($errors->has('pessoas_id'))
                                             <span class="help-block"><strong>{{ $errors->first('pessoas_id') }}</strong></span>
                                         @endif
@@ -78,7 +81,7 @@
                                                                           'membros_natos' => 'MEMBROSS NATTOS'
 
 
-                                                                        ],null,['class' => 'selectpicker','data-live-search'=> 'true'])
+                                                                        ],null,['class' => 'selectpicker','data-live-search'=> 'true','data-show-subtext' => 'true', 'data-width'=>'auto'])
                                                                      }}
 
 
@@ -92,6 +95,7 @@
 
                                 <div class="box-footer">
                                     @if(Request::is('*/editar'))
+                                        <a class="btn btn-default btn-close" href="{{ route('conselho.index') }}">Cancelar</a>
                                         {!! Form::submit('Atualziar', ['class' => 'btn btn-info' ]) !!}
                                     @else
                                         {!! Form::submit('Cadastrar', ['class' => 'btn btn-info' ]) !!}
@@ -231,8 +235,8 @@
                                         <td width="50">
 
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/conselhosuperior/'.$rows4->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+                                            <button class="btn btn-default btn-sm type=" type="submit">
+                                                <i class="fa fa-trash-o"> </i></button>
                                             {!! Form::close() !!}
                                             <?php $i++; ?>
                                         </td>

@@ -5,11 +5,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Projeto político pedágogico
+            Legislação
 
         </h1>
         <ol class="breadcrumb">
-            <li><a href="home"><i class="fa fa-home"></i>Início</a></li>
+            <li><a href="legislacao"><i class="fa fa-balance-scale"></i>Legislação</a></li>
         </ol>
     </section>
 @endsection
@@ -31,7 +31,7 @@
                             @if(Request::is('*/editar'))
                                 <i class="fa fa-pencil-square-o"></i>       <h3 class="box-title">Atualizar</h3>
                             @else
-                                <i class="fa fa-user-plus"></i>   <h3 class="box-title">Cadastrar Representante</h3>
+                                <i class=""></i>   <h3 class="box-title">Cadastrar Legislação</h3>
                             @endif
                         </div>
 
@@ -47,15 +47,23 @@
 
                             {{ csrf_field() }}
                             <div class="box-body">
+                                <!-- Mensagem de Ação -->
                                 @if(Session::has('mensagem_sucesso'))
-
                                     <div class="callout callout-success">
                                         {{ Session::get('mensagem_sucesso') }}
                                     </div>
-
+                                @elseif(Session::has('mensagem_update'))
+                                    <div class="callout callout-warning">
+                                        {{ Session::get('mensagem_update') }}
+                                    </div>
+                                @elseif(Session::has('mensagem_destroy'))
+                                    <div class="callout callout-danger">
+                                        {{ Session::get('mensagem_destroy') }}
+                                    </div>
                                 @endif
 
-                                    <div class="form-group{{ $errors->has('lei') ? ' has-error' : '' }}">
+
+                                <div class="form-group{{ $errors->has('lei') ? ' has-error' : '' }}">
                                         {!!  Form::label('lei','Lei',array('class' => 'col-sm-2 control-label')) !!}
                                         <div class="col-sm-6">
                                             {!! Form::input('text','lei',old('lei'),array('class' => 'form-control','placeholder' => ''))!!}
@@ -100,7 +108,7 @@
 
 
 
-                <div class="col-md-12">
+                <div class="col-md-13">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Leis Cadatradas</h3>
@@ -122,17 +130,21 @@
                                         <td>{{$i}}</td>
                                         <td>{{$rows->lei}}</td>
                                         <td>{{$rows->ementa}}</td>
+
+
+
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('legislacao.edit', ['id' => $rows->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
+                                        </td>
                                         <td width="50">
-                                            <a href="{{ route('legislacao.edit', ['id' => $rows->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-                                        </td><td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/legislacao/'.$rows->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i class="fa fa-trash-o"></i></button>
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover a legislação {{$rows->lei}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
 
-                                    </tr>
+                                    </tr>  <?php $i++; ?>
                                 @endforeach
 
                             </table>

@@ -69,7 +69,7 @@ class ConselhosuperiorController extends Controller
         $remover = Conselho::findOrFail($id);
         $remover->delete();
 
-        \Session::flash('mensagem_sucesso', 'Cadastro removido com sucesso!');
+        \Session::flash('mensagem_destroy', 'Cadastro removido com sucesso!');
         return Redirect::to('conselhosuperior');
     }
 
@@ -116,7 +116,7 @@ class ConselhosuperiorController extends Controller
         $getTable->titulo = $request->input('titulo');
         $getTable->save();
 
-        \Session::flash('mensagem_sucesso', 'Cadastro atualizado com sucesso!');
+        \Session::flash('mensagem_update', 'Cadastro atualizado com sucesso!');
         return Redirect::to('conselhosuperior')
             ->with('success', 'You have been successfully update data');
 

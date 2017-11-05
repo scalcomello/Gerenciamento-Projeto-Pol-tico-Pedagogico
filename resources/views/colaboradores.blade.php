@@ -5,8 +5,8 @@
     <section class="content-header">
         <h1>Colaboradores</h1>
         <ol class="breadcrumb">
-            <li><a href=home><i class="fa fa-dashboard"></i> Ínicio</a></li>
-            <li><a href=colaboradores><i class="fa fa-dashboard"></i>Colaboradores</a></li>
+            <li><a href="colaboradores"><i class="fa  fa-male"></i> Colaboradores</a></li>
+
         </ol>
     </section>
 @endsection
@@ -40,12 +40,19 @@
                             {{ csrf_field() }}
                             <div class="box-body">
 
+                                <!-- Mensagem de Ação -->
                                 @if(Session::has('mensagem_sucesso'))
-
                                     <div class="callout callout-success">
                                         {{ Session::get('mensagem_sucesso') }}
                                     </div>
-
+                                @elseif(Session::has('mensagem_update'))
+                                    <div class="callout callout-warning">
+                                        {{ Session::get('mensagem_update') }}
+                                    </div>
+                                 @elseif(Session::has('mensagem_destroy'))
+                                        <div class="callout callout-danger">
+                                            {{ Session::get('mensagem_destroy') }}
+                                        </div>
                                 @endif
 
                                 <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
@@ -65,7 +72,6 @@
                                                                         'professor' => 'Professor',
                                                                         'administrativo' => 'Administrativo',
                                                                         'outros' => 'Outros',
-
 
                                                                         ],'Professor',['class' => 'form-control'])
                                                                      }}
@@ -94,6 +100,7 @@
 
                 <div class="box box-primary">
                     <div class="box-header">
+                        <i class="ion ion-clipboard"></i>
                         <h3 class="box-title">Lista de Colaboradores</h3>
                     </div>
                     <!-- /.box-header -->
@@ -113,16 +120,19 @@
                                     <td>{{$rows->nome}}</td>
                                     <td>{{$rows->cargo}}</td>
                                     <td width="50"> <div class="tools">
-                                            <a href="{{ route('colaboradores.edit', ['id' => $rows->id ]) }}" class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-                                        </div>
 
+
+                                            <a href="{{ route('colaboradores.edit', ['id' => $rows->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+
+                                        </div>
                                     </td>
                                     <td width="50">
                                         {!! Form::open(['method'=>'DELETE', 'url' => '/colaboradores/'.$rows->id]) !!}
 
-                                        <button class="btn btn-default btn-sm type=" onclick="return confirm('Deseja remover este colaborador?')" type="submit"><i class="fa fa-trash-o"></i></button>
+                                        <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                         {!! Form::close() !!}
                                     </td>
+
                                     @endforeach
                                 </tr>
 
@@ -151,13 +161,38 @@
     <!-- /.box -->
 
 
+
+
+
+
+
+    <script type="text/javascript">
+        $(function () {
+            $("#example1").DataTable({      "oLanguage": {
+                "sProcessing":   "Processando...",
+                "sLengthMenu":   "Mostrar _MENU_ registros",
+                "sZeroRecords":  "Não foram encontrados resultados",
+                "sInfo":         "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoEmpty":    "Mostrando de 0 até 0 de 0 registros",
+                "sInfoFiltered": "",
+                "sInfoPostFix":  "",
+                "sSearch":       "Buscar:",
+                "sUrl":          "",
+                "oPaginate": {
+                    "sFirst":    "Primeiro",
+                    "sPrevious": "Anterior",
+                    "sNext":     "Seguinte",
+                    "sLast":     "Último"
+                }
+            }});
+
+        });
+    </script>
+
 @endsection
 
 
 @section('scripts')
-    <script type="text/javascript">
-        $(function () {
-            //alert('Teste section usuarios');
-        });
-    </script>
+
+
 @endsection

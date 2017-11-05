@@ -4,12 +4,11 @@
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
-            Legislação Curso
-
-        </h1>
+        <h1>{{$curso->denominacao}} - Legislação Curso</h1>
         <ol class="breadcrumb">
-            <li><a href="home"><i class="fa fa-home"></i>Início</a></li>
+            <li><a href="../../../cursos"><i class="fa fa-graduation-cap"></i>Cursos</a></li>
+            <li class="active"><a href="../gerenciar"><i class=""></i>Gerenciar</a></li>
+            <li class="active"><a href="legislacao"><i class=""></i>Legislação</a></li>
         </ol>
     </section>
 @endsection
@@ -31,7 +30,7 @@
                             @if(Request::is('*/editar'))
                                 <i class="fa fa-pencil-square-o"></i>       <h3 class="box-title">Atualizar</h3>
                             @else
-                                <i class="fa fa-balance-scale"></i>   <h3 class="box-title">Cadastrar Legislação</h3>
+                                <i class="fa fa-balance-scale"></i>   <h3 class="box-title">Incluir Legislação</h3>
                             @endif
                         </div>
 
@@ -82,7 +81,7 @@
 
 
 
-                <div class="col-md-12">
+                <div class="col-md-13">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Legislação Referencial</h3>

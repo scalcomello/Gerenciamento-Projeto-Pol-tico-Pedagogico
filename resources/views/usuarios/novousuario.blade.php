@@ -6,8 +6,9 @@
         <h1>Usuários</h1>
 
         <ol class="breadcrumb">
-            <li><a href="../usuarios">Usuários</a></li>
-            <li class="active">Novo</li>
+            <li><a href="../usuarios"><i class="fa fa-user"></i>Usuários</a></li>
+            <li><a href="novo"><i class="fa fa-user-plus"></i>Novo</a></li>
+
         </ol>
     </section>
 @endsection
@@ -37,12 +38,15 @@
                                     <div class="box-body">
 
                                         @if(Session::has('mensagem_sucesso'))
-
                                             <div class="callout callout-success">
                                                 {{ Session::get('mensagem_sucesso') }}
                                             </div>
-
+                                        @elseif(Session::has('mensagem_update'))
+                                            <div class="callout callout-warning">
+                                                {{ Session::get('mensagem_update') }}
+                                            </div>
                                         @endif
+
 
                                         <div class="box-body">
                                         {{ Form::hidden('foto', '/bower_components/admin-lte/dist/img/55162.png') }}

@@ -9,7 +9,8 @@
 
         </h1>
         <ol class="breadcrumb">
-            <li><a href="home"><i class="fa fa-home"></i>Início</a></li>
+            <li><a href="caracterizacao"><i class="fa fa-building-o"></i>Caracterização Institucional</a></li>
+            <li><a href="caracterizacao"><i class=""></i>caracterização</a></li>
         </ol>
     </section>
 
@@ -24,7 +25,7 @@
                 <div class="box box-primary">
                     <div class="box-header">
                         <div class="box-header with-border">
-
+                            <i class="fa fa-file-text-o"></i>
                             <h3 class="box-title">{{$caracterizacao->titulo}}</h3>
 
                         </div>
@@ -60,7 +61,7 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <div class="box-header with-border">
-
+                        <i class="fa fa-file-text-o"></i>
                         <h3 class="box-title">{{$historico_campus->titulo}}</h3>
 
                     </div>

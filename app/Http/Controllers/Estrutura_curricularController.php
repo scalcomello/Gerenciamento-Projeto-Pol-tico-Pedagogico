@@ -13,7 +13,6 @@ use Charts;
 
 use Illuminate\Support\Facades\Redirect;
 
-
 class Estrutura_curricularController extends Controller
 {
 
@@ -22,16 +21,28 @@ class Estrutura_curricularController extends Controller
         $this->middleware('auth');
     }
 
-    public function index($id)
+    public function index_estrutura_curricular($id)
     {
         //$disciplina = Ementario::where('cursos_id', '=', $id)->where('periodo', '=', '2')->get(['id', 'disciplina', 'ch', 'qtd_aula', 'periodo']);
+
 
         $disciplinas_nome = Disciplina::pluck('nome','id');
 
         $idcurso = $id;
         $total_ch[] = 0;
         $total_qtd_aula[] = 0;
-        $disciplina = Ementario::all();
+
+        //$disciplina = Ementario::all();
+        $disciplina = Ementario::with('componentecurricular')->get();
+        $componente = Componentecurricular::pluck('sigla','id');
+
+
+        $nucleo1 = Ementario::where('componentecurriculars_id', '2')->sum('ch');
+
+       // $nucleo1 = 0;
+      //  foreach ($teste as $rows){
+      //      $nucleo1 = $nucleo1 + $rows->componentecurricular->ch;
+
 
         $curso = Curso::find($id);
         $periodo = $curso->qtd_periodo;
@@ -45,6 +56,7 @@ class Estrutura_curricularController extends Controller
         }
 
         $componentecurricular = Componentecurricular::where('cursos_id', $id)->get();
+
         $chg[] = 0;
         $descg[] = 0;
         $sigla[] = 0;
@@ -74,6 +86,8 @@ class Estrutura_curricularController extends Controller
             ->with('total_ch', $total_ch)
             ->with('total_qtd_aula', $total_qtd_aula)
             ->with('disciplinas_nome', $disciplinas_nome)
+            ->with('componente', $componente)
+            ->with('nucleo1', $nucleo1)
             ->with('chart', $chart);
 
     }
@@ -97,7 +111,21 @@ class Estrutura_curricularController extends Controller
         $getTable->qtd_aula = $request->input('qtd_aula');
         $getTable->periodo = $request->input('periodo');
         $getTable->cursos_id = $request->input('cursos_id');
+        $getTable->componentecurriculars_id = $request->input('componentecurriculars_id');
         $getTable->save();
+
+        $id = $request->input('componentecurriculars_id');
+        $somacomponente = Ementario::where('componentecurriculars_id', $id)->sum('ch');
+        $nucleo1 = Componentecurricular::where('id', 1)->first();
+        $nucleo2 = Componentecurricular::where('id', 2)->first();
+        $nucleo3 = Componentecurricular::where('id', 3)->first();
+        $somatotal = $nucleo1->cargahoraria +  $nucleo2->cargahoraria + $nucleo3->cargahoraria;
+
+        Componentecurricular::where('id', $id)
+            ->update(['cargahoraria' => $somacomponente]);
+
+        Componentecurricular::where('id', 4)
+            ->update(['cargahoraria' => $somatotal]);
 
         \Session::flash('mensagem_sucesso', 'Cadastro realizado com sucesso!');
         return back();
@@ -146,7 +174,22 @@ class Estrutura_curricularController extends Controller
         $getTable->qtd_aula = $request->input('qtd_aula');
         $getTable->periodo = $request->input('periodo');
         $getTable->cursos_id = $request->input('cursos_id');
+        $getTable->componentecurriculars_id = $request->input('componentecurriculars_id');
         $getTable->save();
+
+        $id = $request->input('componentecurriculars_id');
+        $somacomponente = Ementario::where('componentecurriculars_id', $id)->sum('ch');
+        $nucleo1 = Componentecurricular::where('id', 1)->first();
+        $nucleo2 = Componentecurricular::where('id', 2)->first();
+        $nucleo3 = Componentecurricular::where('id', 3)->first();
+        $somatotal = $nucleo1->cargahoraria +  $nucleo2->cargahoraria + $nucleo3->cargahoraria;
+
+        Componentecurricular::where('id', $id)
+            ->update(['cargahoraria' => $somacomponente]);
+
+        Componentecurricular::where('id', 4)
+            ->update(['cargahoraria' => $somatotal]);
+
 
         return back();
     }

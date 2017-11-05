@@ -20,51 +20,14 @@ class Legislacao_cursoController extends Controller
 
     public function index($curso)
     {
-
-
-
-        $qtd_periodo = 8;
-
-        $i=1;
-        while ($i <= $qtd_periodo) {
-            $periodo = Ementario::where('cursos_id', '=', 1)
-                ->where('periodo', '=', $i)
-                ->get(['id', 'disciplinas_id', 'ch', 'qtd_aula', 'periodo']);
-
-            foreach ($periodo as $rows) {
-                echo $i.$rows->disciplina->nome;
-                echo '<br>';
-            }
-
-           echo '<br>';
-
-            $i++;
-    }
-
-/*
- *
- *      ->orderBy('ordem','ASC')
-            ->orderBy('subordem','ASC')
-        foreach ($documento as $rows){
-            $subid = $rows->id;
-            $subdocumento = Documento::where('status', '=', 'true')
-                ->orderBy('ordem','ASC')->with('subdocumento')->get();
-
-            echo '<br>';
-        }*/
-
-
-        /* $legislacao_curso = Legislacao_curso::select('id', 'legislacaos_id')->with('legislacao')->get();
+         $legislacao_curso = Legislacao_curso::select('id', 'legislacaos_id')->with('legislacao')->get();
          $legislacaos_lei = Legislacao::pluck('lei', 'id');
 
-
-
+        $curso = Curso::find($curso);
 
           return view('cursos.legislacao')->with('curso', $curso)
               ->with('legislacaos_lei', $legislacaos_lei)
-
               ->with('legislacao_curso', $legislacao_curso);
- */
     }
 
     public function store_legislacao(Request $request)

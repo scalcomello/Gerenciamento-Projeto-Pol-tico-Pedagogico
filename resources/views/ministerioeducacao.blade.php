@@ -5,8 +5,8 @@
     <section class="content-header">
         <h1>Ministerio da Educação</h1>
         <ol class="breadcrumb">
-            <li><a href=home><i class="fa fa-dashboard"></i> Ínicio</a></li>
-            <li><a href=ministerio_da_educacao><i class="fa fa-dashboard"></i> Ministerio da Educação</a></li>
+
+            <li><a href=ministerio_da_educacao><i class="fa fa-asterisk"></i> Ministerio da Educação</a></li>
         </ol>
     </section>
 @endsection
@@ -40,11 +40,20 @@
                             {{ csrf_field() }}
                             <div class="box-body">
 
-                                @if(Session::has('mensagem_sucesso'))
 
+                                <!-- Mensagem de Ação -->
+                                @if(Session::has('mensagem_sucesso'))
                                     <div class="callout callout-success">
                                         {{ Session::get('mensagem_sucesso') }}
                                     </div>
+                                @elseif(Session::has('mensagem_update'))
+                                    <div class="callout callout-warning">
+                                        {{ Session::get('mensagem_update') }}
+                                    </div>
+                                @elseif(Session::has('mensagem_destroy'))
+                                        <div class="callout callout-danger">
+                                            {{ Session::get('mensagem_destroy') }}
+                                        </div>
                                 @endif
 
                                 <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
@@ -98,7 +107,8 @@
                 <div class="col-md-13">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Representantes</h3>
+                            <i class="ion ion-clipboard"></i>
+                            <h3 class="box-title">Lista de representantes</h3>
                         </div>
                         <!-- /.box-header -->
 
@@ -117,18 +127,17 @@
                                         <td>{{$i}}</td>
                                         <td>{{$rows->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('ministerio.edit', ['id' => $rows->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('ministerio.edit', ['id' => $rows->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/ministerio_da_educacao/'.$rows->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
 
+                                        <?php $i++;?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -137,23 +146,22 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $j = 1;?>
                                 @foreach($ministro as $rows1)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$j}}</td>
                                         <td>{{$rows1->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('ministerio.edit', ['id' => $rows1->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('ministerio.edit', ['id' => $rows1->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/ministerio_da_educacao/'.$rows1->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows1->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $j++;?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -162,23 +170,22 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $k = 1;?>
                                 @foreach($sec_educ_prof_tecn as $rows2)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$k}}</td>
                                         <td>{{$rows2->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('ministerio.edit', ['id' => $rows2->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('ministerio.edit', ['id' => $rows2->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/ministerio_da_educacao/'.$rows2->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows2->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $k++;?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -187,23 +194,23 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $l = 1;?>
                                 @foreach($reitor as $rows3)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$l}}</td>
                                         <td>{{$rows3->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('ministerio.edit', ['id' => $rows3->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('ministerio.edit', ['id' => $rows3->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/ministerio_da_educacao/'.$rows3->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows3->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $l++;?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -212,23 +219,22 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $m = 1;?>
                                 @foreach($pro_reitor_admin_plan as $rows4)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$m}}</td>
                                         <td>{{$rows4->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('ministerio.edit', ['id' => $rows4->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('ministerio.edit', ['id' => $rows4->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/ministerio_da_educacao/'.$rows4->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows4->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $m++;?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -237,23 +243,22 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $n = 1;?>
                                 @foreach($pro_reitor_ensino as $rows5)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$n}}</td>
                                         <td>{{$rows5->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('ministerio.edit', ['id' => $rows5->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('ministerio.edit', ['id' => $rows5->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/ministerio_da_educacao/'.$rows5->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows5->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $n++;?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -262,23 +267,22 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $v = 1;?>
                                 @foreach($pro_reitor_desenv_inst as $rows6)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$v}}</td>
                                         <td>{{$rows6->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('ministerio.edit', ['id' => $rows6->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('ministerio.edit', ['id' => $rows6->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/ministerio_da_educacao/'.$rows6->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows6->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $v++;?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -287,23 +291,22 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $s = 1;?>
                                 @foreach($pro_reitor_posgrad_pesq_ino as $rows7)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$s}}</td>
                                         <td>{{$rows7->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('ministerio.edit', ['id' => $rows7->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('ministerio.edit', ['id' => $rows7->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/ministerio_da_educacao/'.$rows7->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows7->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $s++;?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -312,23 +315,22 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $t = 1;?>
                                 @foreach($pro_reitor_ext as $rows8)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$t}}</td>
                                         <td>{{$rows8->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('ministerio.edit', ['id' => $rows8->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('ministerio.edit', ['id' => $rows8->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/ministerio_da_educacao/'.$rows8->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows8->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $t++;?>
                                     </tr>
                                 @endforeach
                             </table>

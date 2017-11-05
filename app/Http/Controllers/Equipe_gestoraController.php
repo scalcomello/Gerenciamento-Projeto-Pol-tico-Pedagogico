@@ -51,7 +51,7 @@ class Equipe_gestoraController extends Controller
     {
         $remover = Equipegestora::findOrFail($id);
         $remover->delete();
-        \Session::flash('mensagem_sucesso', 'Cadastro removido com sucesso!');
+        \Session::flash('mensagem_destroy', 'Cadastro removido com sucesso!');
         return Redirect::to('equipe_gestora');
     }
 
@@ -89,7 +89,7 @@ class Equipe_gestoraController extends Controller
         $getTable->categoria = $request->input('categoria');
         $getTable->save();
 
-        \Session::flash('mensagem_sucesso', 'Cadastro atualizado com sucesso!');
+        \Session::flash('mensagem_update', 'Cadastro atualizado com sucesso!');
         return Redirect::to('equipe_gestora');
 
 

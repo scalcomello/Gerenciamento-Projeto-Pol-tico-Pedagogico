@@ -19,7 +19,8 @@ class Diretores_de_campiController extends Controller
     public function index()
     {
 
-        $diretores = Diretores::all();
+        $diretores = Diretores::with('pessoa')->get();
+        //$diretores = Diretores::all();
         $pessoas_nome = Pessoa::orderBy('nome', 'asc')->pluck('nome','id');
 
         return view('diretoresdecampi')
@@ -32,18 +33,18 @@ class Diretores_de_campiController extends Controller
     {
         $validator = validator($request->all(), [
 
-            'diretor' => 'required|string|min:3|max:50',
-            'campi' => 'required|string|min:3|max:50'
+
+            'campi' => 'required|string|min:3|max:50',
 
         ]);
         if ($validator->fails()) {
-            return Redirect('diretoresdecampi')
+            return Redirect('diretores_de_campi')
                 ->withErrors($validator)
                 ->withInput();
         }
 
         $getTable = new Diretores();
-        $getTable->diretor = $request->input('diretor');
+        $getTable->pessoas_id = $request->input('pessoas_id');
         $getTable->campi = $request->input('campi');
         $getTable->save();
 
@@ -57,7 +58,7 @@ class Diretores_de_campiController extends Controller
 
         $remover->delete();
 
-        \Session::flash('mensagem_sucesso', 'Cadastro removido com sucesso!');
+        \Session::flash('mensagem_destroy', 'Cadastro removido com sucesso!');
         return Redirect::to('diretores_de_campi');
     }
 
@@ -65,10 +66,17 @@ class Diretores_de_campiController extends Controller
     {
         $edit = Diretores::findOrFail($id);
 
+        $diretores = Diretores::with('pessoa')->get();
+        $pessoas_nome = Pessoa::orderBy('nome', 'asc')->pluck('nome','id');
+
+        return view('diretoresdecampi')
+            ->with('pessoas_nome', $pessoas_nome)
+            ->with('diretores', $diretores)
+        ->with('edit', $edit);
+
         $diretores = Diretores::all();
 
-        return view('diretoresdecampi')->with('diretores', $diretores)
-            ->with('edit', $edit);
+
 
     }
 
@@ -76,7 +84,6 @@ class Diretores_de_campiController extends Controller
     {
         $validator = validator($request->all(), [
 
-            'diretor' => 'required|string|min:3|max:50',
             'campi' => 'required|string|min:3|max:50'
 
         ]);
@@ -87,12 +94,12 @@ class Diretores_de_campiController extends Controller
         }
 
         $getTable = Diretores::find($id);
-        $getTable->diretor = $request->input('diretor');
+        $getTable->pessoas_id = $request->input('pessoas_id');
         $getTable->campi = $request->input('campi');
         $getTable->save();
 
-        \Session::flash('mensagem_sucesso', 'Cadastro atualizado com sucesso!');
-        return back();
+        \Session::flash('mensagem_update', 'Cadastro atualizado com sucesso!');
+        return Redirect::to('diretores_de_campi');
 
 
     }

@@ -74,7 +74,7 @@ class ColaboradoresController extends Controller
         $getTable->cargo = $request->input('cargo');
         $getTable->save();
 
-        \Session::flash('mensagem_sucesso', 'Cadastro atualizado com sucesso!');
+        \Session::flash('mensagem_update', 'Cadastro atualizado com sucesso!');
         return Redirect::to('colaboradores');
 
     }
@@ -86,7 +86,7 @@ class ColaboradoresController extends Controller
         $getTable->status = 'off';
         $getTable->save();
         //$remover->delete();
-        \Session::flash('mensagem_sucesso', 'Cadastro removido com sucesso!');
+        \Session::flash('mensagem_destroy', 'Cadastro removido com sucesso!');
         return Redirect::to('colaboradores');
     }
 

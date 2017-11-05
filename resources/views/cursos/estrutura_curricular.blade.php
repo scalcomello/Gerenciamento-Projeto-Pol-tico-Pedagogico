@@ -4,11 +4,11 @@
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
-            Estrutura Curricular
-        </h1>
+        <h1>{{$curso->denominacao}} - Estrutura Curricular</h1>
         <ol class="breadcrumb">
-            <li><a href="home"><i class="fa fa-home"></i>Início</a></li>
+            <li><a href="../../../cursos"><i class="fa fa-graduation-cap"></i>Cursos</a></li>
+            <li class="active"><a href="../gerenciar"><i class=""></i>Gerenciar</a></li>
+            <li class="active"><a href="estrutura_curricular"><i class=""></i>Estrutura curricular</a></li>
         </ol>
     </section>
 @endsection
@@ -97,9 +97,9 @@
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">{{$j}} Periodo</h3>
-                            <button type="button" class="btn btn-default pull-right" data-toggle="modal"
+                            <button title="Adicionar nova disciplina" type="button" class="btn btn-default pull-right" data-toggle="modal"
                                     data-target="#myModal"><i class="fa fa-plus"></i>
-                                Nova Disciplina
+                                Disciplina
                             </button>
                         </div>
 
@@ -108,6 +108,7 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Disciplina</th>
+                                <th>Núcleo</th>
                                 <th style="width: 30px">Carga Horaria</th>
                                 <th style="width: 30px">Aulas Semanais</th>
                                 <th colspan="2">Ação</th>
@@ -121,6 +122,7 @@
                                     <tr>
                                         <td>{{$i.'.'}}</td>
                                         <td><a href='estrutura_curricular/{{$rows->id}}/ementario'>{{$rows->disciplina->nome}}</a></td>
+                                        <td>{{$rows->componentecurricular->sigla}}</td>
                                         <td width="80">
                                             <center>{{$rows->ch}}</center>
                                         </td>
@@ -200,6 +202,15 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('nucleo') ? ' has-error' : '' }}">
+                            {!!  Form::label('nucleo','Núcleo',array('class' => 'col-sm-4 control-label')) !!}
+                            <div class="col-sm-4">
+                                {!! Form::input('text','nucleo',old('nucleo'),array('class' => 'form-control','placeholder' => ''))!!}
+                                @if ($errors->has('nucleo'))
+                                    <span class="help-block"><strong>{{ $errors->first('nucleo') }}</strong></span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group{{ $errors->has('ch') ? ' has-error' : '' }}">
                             {!!  Form::label('ch','Carga Horária',array('class' => 'col-sm-4 control-label')) !!}
@@ -279,7 +290,16 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="form-group{{ $errors->has('componentecurriculars_id') ? ' has-error' : '' }}">
+                                {!!  Form::label('componentecurriculars_id','Componente Curricular',array('class' => 'col-sm-2 control-label')) !!}
+                                <div class="col-sm-6">
 
+                                    {{ Form::select('componentecurriculars_id' ,$componente,null,['class' => 'selectpicker','data-live-search'=> 'true','data-show-subtext' => 'true', 'data-width'=>'auto'])  }}
+                                    @if ($errors->has('componentecurriculars_id'))
+                                        <span class="help-block"><strong>{{ $errors->first('componentecurriculars_id') }}</strong></span>
+                                    @endif
+                                </div>
+                            </div>
 
                             <div class="form-group{{ $errors->has('ch') ? ' has-error' : '' }}">
                                 {!!  Form::label('ch','Carga Horária',array('class' => 'col-sm-4 control-label')) !!}

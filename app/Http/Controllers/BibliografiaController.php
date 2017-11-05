@@ -66,7 +66,7 @@ class BibliografiaController extends Controller
         $remover = Bibliografia::findOrFail($id);
         $remover->delete();
 
-        \Session::flash('mensagem_sucesso', 'Removido com sucesso!');
+        \Session::flash('mensagem_destroy', 'Removido com sucesso!');
         return back();
     }
 

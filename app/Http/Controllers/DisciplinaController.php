@@ -48,7 +48,7 @@ class DisciplinaController extends Controller
         $remover = Disciplina::findOrFail($id);
 
         $remover->delete();
-        \Session::flash('mensagem_sucesso', 'Disciplina removida com sucesso!');
+        \Session::flash('mensagem_destroy', 'Disciplina removida com sucesso!');
         return Redirect::to('disciplina');
     }
 
@@ -78,7 +78,7 @@ class DisciplinaController extends Controller
         $getTable->nome = $request->input('nome');
         $getTable->save();
 
-        \Session::flash('mensagem_sucesso', 'Disciplina atualizada com sucesso!');
+        \Session::flash('mensagem_update', 'Disciplina atualizada com sucesso!');
         return Redirect::to('disciplina');
 
     }

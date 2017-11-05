@@ -59,7 +59,6 @@
 
             <li {{ (Request::is('diretores_de_campi') ? 'class=active': '') }}><a href="/diretores_de_campi"><i class="fa fa-bank"></i><span>Campi</span></a></li>
             <li {{ (Request::is('equipe_gestora') ? 'class=active': '') }}><a href="/equipe_gestora"><i class="fa fa-group"></i><span>Equipe Gestora</span></a></li>
-            <li {{ (Request::is('corpo_administrativo') ? 'class=active': '') }}><a href="/corpo_administrativo"><i class="fa fa-file-text-o"></i><span>Corpo Administrativo</span></a></li>
             <li {{ (Request::is('legislacao') ? 'class=active': '') }}><a href="/legislacao"><i class="fa fa-balance-scale"></i><span>Legislação</span></a></li>
             <li {{ (Request::is('bibliografia') ? 'class=active': '') }}><a href="/bibliografia"><i class="fa fa-book"></i><span>Bibliografia</span></a></li>
             <li {{ (Request::is('disciplina') ? 'class=active': '') }}><a href="/disciplina"><i class="fa fa-list-alt"></i><span>Disciplina</span></a></li>

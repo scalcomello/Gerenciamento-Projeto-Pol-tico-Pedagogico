@@ -9,7 +9,8 @@
 
         </h1>
         <ol class="breadcrumb">
-            <li><a href="home"><i class="fa fa-home"></i>Início</a></li>
+            <li><a href="historico"><i class="fa fa-building-o"></i>Caracterização Institucional</a></li>
+            <li><a href="historico"><i class=""></i>histórico</a></li>
         </ol>
     </section>
 @endsection
@@ -24,7 +25,8 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <div class="box-header with-border">
-
+      <i class=fa-file-text-o"></i>
+                        <i class="fa fa-file-text-o"></i>
                         <h3 class="box-title">{{$historico->titulo}}</h3>
 
                     </div>
@@ -65,7 +67,6 @@
             </div>
         </div>
 
-
     </section>
 
 
@@ -73,10 +74,5 @@
 
 @section('scripts')
 
-    <script type="text/javascript">
-        $(function () {
-            //alert('Teste section');
-        });
-    </script>
 
 @endsection

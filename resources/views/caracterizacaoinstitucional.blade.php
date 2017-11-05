@@ -5,8 +5,9 @@
     <section class="content-header">
         <h1>Caracterização Institucional</h1>
         <ol class="breadcrumb">
-            <li><a href=home><i class="fa fa-dashboard"></i> Ínicio</a></li>
-            <li><a href=ministerio_da_educacao><i class="fa fa-dashboard"></i>Caracterização Institucional</a></li>
+
+            <li><a href="identificacao"><i class="fa fa-building-o"></i>Caracterização Institucional</a></li>
+            <li><a href="identificacao"><i class=""></i>Identificação</a></li>
         </ol>
     </section>
 @endsection
@@ -199,7 +200,7 @@
                                     </div>
                                     @endif
                                     <div class="box-footer">
-
+                                        <a class="btn btn-default btn-close" href="{{ route('caracterizacao.index_identificacao') }}">Cancelar</a>
                                             {!! Form::submit('Atualziar', ['class' => 'btn btn-info' ]) !!}
 
                                     </div>
@@ -224,7 +225,7 @@
                                 @if(Request::is('*/editar'))
                                     <i class="fa fa-pencil-square-o"></i>       <h3 class="box-title">Atualizar</h3>
                                 @else
-                                    <i class="fa fa-user-plus"></i>   <h3 class="box-title">Reitoria</h3>
+                                    <i class="fa fa-building-o"></i>   <h3 class="box-title">Reitoria</h3>
                                 @endif
                             </div>
 
@@ -360,7 +361,7 @@
                                 @if(Request::is('*/editar'))
                                     <i class="fa fa-pencil-square-o"></i>       <h3 class="box-title">Atualizar</h3>
                                 @else
-                                    <i class="fa fa-user-plus"></i>   <h3 class="box-title">Entidade Mantenedora</h3>
+                                    <i class="fa fa-building-o"></i>   <h3 class="box-title">Entidade Mantenedora</h3>
                                 @endif
                             </div>
 
@@ -505,7 +506,7 @@
                                 @if(Request::is('*/editar'))
                                     <i class="fa fa-pencil-square-o"></i>       <h3 class="box-title">Atualizar</h3>
                                 @else
-                                    <i class="fa fa-user-plus"></i>   <h3 class="box-title">Identificação do Campi</h3>
+                                    <i class="fa fa-building-o"></i>   <h3 class="box-title">Identificação do Campi</h3>
                                 @endif
                             </div>
 

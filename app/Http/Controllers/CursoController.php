@@ -25,25 +25,55 @@ class CursoController extends Controller
         return view('cursos.curso')->with('curso', $curso);
     }
 
+    public function create()
+    {
+        return view('cursos.novocurso');
+    }
+
     public function store(Request $request)
     {
+
+        $validator = validator($request->all(), [
+
+           //validacao
+
+        ]);
+        if($validator->fails()){
+            return Redirect('cursos/novo')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $getTable = new Curso();
         $getTable->denominacao = $request->input('denominacao');
         $getTable->coordenador = $request->input('coordenador');
         $getTable->qtd_periodo = $request->input('qtd_periodo');
+        $getTable->tipo = $request->input('tipo');
+        $getTable->modalidade  = $request->input('modalidade');
+        $getTable->area_conhecimento  = $request->input('area_conhecimento');
+        $getTable->habilitacao  = $request->input('habilitacao');
+        $getTable->turno  = $request->input('turno');
+        $getTable->local_funcionamento  = $request->input('local_funcionamento');
+        $getTable->ano_implementacao  = $request->input('ano_implementacao');
+        $getTable->n_vagas  = $request->input('n_vagas');
+        $getTable->forma_ingresso  = $request->input('forma_ingresso');
+        $getTable->requisitos_acesso  = $request->input('requisitos_acesso');
+        $getTable->periodicidade_oferta  = $request->input('periodicidade_oferta');
+        $getTable->qtd_estagio  = $request->input('qtd_estagio');
+        $getTable->tempo_min  = $request->input('tempo_min');
+        $getTable->tempo_max  = $request->input('tempo_max');
+        $getTable->ch_total  = $request->input('ch_total');
+
         $getTable->save();
 
-        \Session::flash('mensagem_sucesso', 'Cadastro realizado com sucesso!');
-        return Redirect::to('cursos');
+        \Session::flash('mensagem_sucesso', 'Curso  criado com sucesso!');
+        return back();
     }
 
-    public function form()
+    public function edit($id)
     {
-
-        $curso = Curso::all();
-
-        return view('cursos.curso')->with('curso', $curso);
+        $curso = Usuarios::findOrFail($id);
+        return view('cursos.novocurso', ['$curso' => $curso]);
     }
 
     public function gerenciar($id)

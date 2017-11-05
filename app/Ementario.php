@@ -14,5 +14,8 @@ class Ementario extends Model
         return $this->belongsTo('App\Disciplina','disciplinas_id');
     }
 
-
+    public function componentecurricular()
+    {
+        return $this->belongsTo('App\Componentecurricular','componentecurriculars_id');
+    }
 }

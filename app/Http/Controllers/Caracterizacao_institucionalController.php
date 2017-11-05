@@ -19,7 +19,7 @@ class Caracterizacao_institucionalController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index_identificacao()
     {
         $reitoria = Caracterizacao::where('tipo', '=','reitoria')->get();
         $mantenedora = Caracterizacao::where('tipo', '=','mantenedora')->get();

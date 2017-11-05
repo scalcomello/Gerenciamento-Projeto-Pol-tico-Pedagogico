@@ -9,8 +9,9 @@
 
         </h1>
         <ol class="breadcrumb">
-            <li><a href="home">Cursos</a></li>
-            <li><a href="home">Gerenciar</a></li>
+            <li><a href="../../cursos"><i class="fa fa-graduation-cap"></i>Cursos</a></li>
+            <li class="active"><a href="gerenciar"><i class=""></i>Gerenciar</a></li>
+
         </ol>
     </section>
 
@@ -18,24 +19,6 @@
 @endsection
 @section('content_page')
 
-    <!-- Modal -->
-    <div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1>Processing...</h1>
-                </div>
-                <div class="modal-body">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                            <span class="sr-only">40% Complete (success)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->
 
 
     <div class="box box-primary">
@@ -43,7 +26,7 @@
             <h3 class="box-title">Gerenciar</h3>
 
 
-            <button type="button" onclick="location.href='/cursos/{{$curso}}/gerenciar/download';" class="btn btn-default pull-right"  data-toggle="modal" data-target="#myModalLabel"><a></a><i class="fa fa-download"></i>
+            <button title="Gerar Docx do PPC" type="button" onclick="location.href='/cursos/{{$curso}}/gerenciar/download';" class="btn btn-default pull-right"  data-toggle="modal" data-target="#myModalLabel"><a></a><i class="fa fa-download"></i>
                 Download
             </button>
 
@@ -134,11 +117,11 @@
                             <!-- small box -->
                             <div class="small-box bg-orange-active">
                                 <div class="inner">
-                                    <h4>Ementário </h4>
+                                    <h4>Corpo Administrativo </h4>
                                     <br><br>
                                 </div>
                                 <div class="icon">
-                                    {!! Html::image('bootstrap/icon/books-stack-of-three.png') !!}
+                                    {!! Html::image('bootstrap/icon/group-of-people-in-a-formation.png') !!}
                                 </div>
                                 <a href="gerenciar/ementario" class="small-box-footer">Acessar <i class="fa fa-arrow-circle-right"></i></a>
                             </div>

@@ -3,10 +3,11 @@
 @section('title_page')
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>{{$curso->denominacao}}</h1>
+        <h1>{{$curso->denominacao}} - Equipe Organizadora</h1>
         <ol class="breadcrumb">
-            <li><a href=home><i class="fa fa-dashboard"></i> Ínicio</a></li>
-            <li><a href=colaboradores><i class="fa fa-dashboard"></i>Colaboradores</a></li>
+            <li><a href="../../../cursos"><i class="fa fa-graduation-cap"></i>Cursos</a></li>
+            <li class="active"><a href="../gerenciar"><i class=""></i>Gerenciar</a></li>
+            <li class="active"><a href="equipe_organizadora"><i class=""></i>Equipe organizadora</a></li>
         </ol>
     </section>
 @endsection

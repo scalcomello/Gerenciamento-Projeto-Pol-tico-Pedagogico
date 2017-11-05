@@ -6,8 +6,7 @@
         <h1>Usuários</h1>
 
         <ol class="breadcrumb">
-            <li><a href=home>Ínicio</a></li>
-            <li class="active">Usuários</li>
+            <li class="active"><a href="usuarios"><i class="fa fa-user"></i>Usuários</a></li>
         </ol>
     </section>
 @endsection
@@ -16,10 +15,9 @@
 
     @include('layouts.sidebar')
 
-    @if(Session::has('mensagem_sucesso'))
-
-        <div class="callout callout-success">
-            {{ Session::get('mensagem_sucesso') }}
+    @if(Session::has('mensagem_destroy'))
+        <div class="callout callout-danger">
+            {{ Session::get('mensagem_destroy') }}
         </div>
 
     @endif
@@ -29,7 +27,7 @@
             <div class="box-header with-border">
                 <i class="ion ion-clipboard"></i>
                 <h3 class="box-title">Lista de Usuários</h3>
-                <button type="button"  onclick="javascript: location.href='{{ route('user.create') }}'" class="btn btn-default pull-right"><i class="fa fa-user-plus"></i> Novo Usuário</button>
+                <button type="button"  onclick="javascript: location.href='{{ route('user.create') }}'"  title="Cadastrar novo usuário" class="btn btn-default pull-right"><i class="fa fa-user-plus"></i> Novo Usuário</button>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -52,22 +50,26 @@
                             <td>{{$rows->perfil}}</td>
 
                             <td width="50"> <div class="tools">
-                                    <a href="{{ route('user.edit', ['id' => $rows->id ]) }}" class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+
+
+                                    <a href="{{ route('user.edit', ['id' => $rows->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+
                                 </div>
 
                             </td><td width="50">
                                 {!! Form::open(['method'=>'DELETE', 'url' => '/usuarios/'.$rows->id]) !!}
 
-                                <button class="btn btn-default btn-sm type=" onclick="return confirm('Deseja remover este usuário?')" type="submit"><i class="fa fa-trash-o"></i></button>
+                                <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o usuário {{$rows->name}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                 {!! Form::close() !!}
-                            </td>       <?php $i++;?>
+                            </td>
+                            <?php $i++;?>
 
                         </tr>
                     @endforeach
                 </table>
             </div>
 
-
+        </div></div>
 
 
 

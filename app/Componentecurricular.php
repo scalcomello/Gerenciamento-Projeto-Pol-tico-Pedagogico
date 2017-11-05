@@ -9,4 +9,9 @@ class Componentecurricular extends Model
     protected $table = 'componentecurriculars';
 
     public $timestamps = false;
+
+    public function ementario()
+    {
+        return $this->belongsTo('App\Ementario');
+    }
 }

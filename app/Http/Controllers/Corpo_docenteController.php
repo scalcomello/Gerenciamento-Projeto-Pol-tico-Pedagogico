@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Curso;
 use Illuminate\Http\Request;
 use App\Pessoa;
 use App\Corpo_docente;
@@ -14,11 +15,11 @@ class Corpo_docenteController extends Controller
         $this->middleware('auth');
     }
 
-    public function index($curso)
+    public function index_corpo_docente($curso)
     {
          $corpodocente = Corpo_docente::select('id','pessoas_id')->with('pessoa')->get();
         $pessoas_nome = Pessoa::where('cargo', '=', 'professor')->pluck('nome', 'id');
-
+        $curso = Curso::find($curso);
 
         return view('cursos.corpo_docente') ->with('curso', $curso)
             ->with('corpodocente', $corpodocente)

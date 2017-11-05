@@ -4,17 +4,13 @@
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
-            Projeto político pedágogico
-
-        </h1>
+        <h1>Equipe gestora</h1>
         <ol class="breadcrumb">
-            <li><a href="home"><i class="fa fa-home"></i>Início</a></li>
+            <li><a href="equipe_gestora"><i class="fa fa-group"></i>Equipe gestora</a></li>
         </ol>
     </section>
 @endsection
 @section('content_page')
-
 
     <!-- Main content -->
     <section class="content">
@@ -42,12 +38,19 @@
 
                             {{ csrf_field() }}
                             <div class="box-body">
+                                <!-- Mensagem de Ação -->
                                 @if(Session::has('mensagem_sucesso'))
-
                                     <div class="callout callout-success">
                                         {{ Session::get('mensagem_sucesso') }}
                                     </div>
-
+                                @elseif(Session::has('mensagem_update'))
+                                    <div class="callout callout-warning">
+                                        {{ Session::get('mensagem_update') }}
+                                    </div>
+                                @elseif(Session::has('mensagem_destroy'))
+                                    <div class="callout callout-danger">
+                                        {{ Session::get('mensagem_destroy') }}
+                                    </div>
                                 @endif
 
                                 <div class="form-group{{ $errors->has('pessoas_id') ? ' has-error' : '' }}">
@@ -95,10 +98,11 @@
                 </div>
 
 
-                <div class="col-md-12">
+                <div class="col-md-13">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Representantes</h3>
+                            <i class="ion ion-clipboard"></i>
+                            <h3 class="box-title">Lista representantes</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -116,16 +120,19 @@
                                         <td>{{$i}}</td>
                                         <td>{{$rows->pessoa->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('equipegestora.edit', ['id' => $rows->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-                                        </td><td width="50">
-                                            {!! Form::open(['method'=>'DELETE', 'url' => '/equipe_gestora/'.$rows->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
-                                            {!! Form::close() !!}
-                                            <?php $i++; ?>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('equipegestora.edit', ['id' => $rows->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
+                                        <td width="50">
+                                            {!! Form::open(['method'=>'DELETE', 'url' => '/equipe_gestora/'.$rows->id]) !!}
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
+                                            {!! Form::close() !!}
+                                        </td>
+
+                                        </td>
+                                        <?php $i++; ?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -134,22 +141,23 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $a = 1;?>
                                 @foreach($desenvolvimento_educacional as $rows)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$a}}</td>
                                         <td>{{$rows->pessoa->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('equipegestora.edit', ['id' => $rows->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-                                        </td><td width="50">
-                                            {!! Form::open(['method'=>'DELETE', 'url' => '/equipe_gestora/'.$rows->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
-                                            {!! Form::close() !!}
-                                            <?php $i++; ?>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('equipegestora.edit', ['id' => $rows->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
+                                        <td width="50">
+                                            {!! Form::open(['method'=>'DELETE', 'url' => '/equipe_gestora/'.$rows->id]) !!}
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
+                                            {!! Form::close() !!}
+                                        </td>
+                                        <?php $a++; ?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -158,23 +166,22 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $b = 1;?>
                                 @foreach($administracao_planejamento as $rows1)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$b}}</td>
                                         <td>{{$rows1->pessoa->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('equipegestora.edit', ['id' => $rows1->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-
-                                        </td><td width="50">
-                                            {!! Form::open(['method'=>'DELETE', 'url' => '/equipe_gestora/'.$rows1->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
-                                            {!! Form::close() !!}
-                                            <?php $i++; ?>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('equipegestora.edit', ['id' => $rows1->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
+                                        <td width="50">
+                                            {!! Form::open(['method'=>'DELETE', 'url' => '/equipe_gestora/'.$rows1->id]) !!}
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows1->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
+                                            {!! Form::close() !!}
+                                        </td> <?php $b++; ?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -183,22 +190,22 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $c = 1;?>
                                 @foreach($ensino as $rows2)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$c}}</td>
                                         <td>{{$rows2->pessoa->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('equipegestora.edit', ['id' => $rows2->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-                                        </td><td width="50">
-                                            {!! Form::open(['method'=>'DELETE', 'url' => '/equipe_gestora/'.$rows2->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
-                                            {!! Form::close() !!}
-                                            <?php $i++; ?>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('equipegestora.edit', ['id' => $rows2->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
+                                        <td width="50">
+                                            {!! Form::open(['method'=>'DELETE', 'url' => '/equipe_gestora/'.$rows2->id]) !!}
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows2->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
+                                            {!! Form::close() !!}
+                                        </td> <?php $c++; ?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -207,22 +214,22 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $d = 1;?>
                                 @foreach($assistencia_educando as $rows3)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$d}}</td>
                                         <td>{{$rows3->pessoa->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('equipegestora.edit', ['id' => $rows3->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-                                        </td><td width="50">
-                                            {!! Form::open(['method'=>'DELETE', 'url' => '/equipe_gestora/'.$rows3->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
-                                            {!! Form::close() !!}
-                                            <?php $i++; ?>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('equipegestora.edit', ['id' => $rows3->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
+                                        <td width="50">
+                                            {!! Form::open(['method'=>'DELETE', 'url' => '/equipe_gestora/'.$rows3->id]) !!}
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows3->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
+                                            {!! Form::close() !!}
+                                        </td>  <?php $d++; ?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -230,20 +237,22 @@
                                     <th>Coordenador Geral de Pesquisa</th>
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $e = 1;?>
                                 @foreach($pesquisa as $rows4)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$e}}</td>
                                         <td>{{$rows4->pessoa->nome}}</td>
-                                        <td width="50">
-                                            <a href="{{ route('ministerio.edit', ['id' => $rows4->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-                                        </td><td width="50">
-                                            {!! Form::open(['method'=>'DELETE', 'url' => '/equipe_gestora/'.$rows4->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i class="fa fa-trash-o"></i></button>
-                                            {!! Form::close() !!}
-                                            <?php $i++; ?>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('equipegestora.edit', ['id' => $rows4->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
+                                        <td width="50">
+                                            {!! Form::open(['method'=>'DELETE', 'url' => '/equipe_gestora/'.$rows4->id]) !!}
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows4->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
+                                            {!! Form::close() !!}
+                                        </td>
+                                        <?php $e++; ?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -252,27 +261,29 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $f = 1;?>
                                 @foreach($extensao as $rows5)
                                     <tr>
-                                        <td>{{$i}}</td>
-                                        <td>{{$rows4->pessoa->nome}}</td>
+                                        <td>{{$f}}</td>
+                                        <td>{{$rows5->pessoa->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('equipegestora.edit', ['id' => $rows5->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-                                        </td><td width="50">
-                                            {!! Form::open(['method'=>'DELETE', 'url' => '/equipe_gestora/'.$rows5->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
-                                            {!! Form::close() !!}
-                                            <?php $i++; ?>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('equipegestora.edit', ['id' => $rows5->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
+                                        <td width="50">
+                                            {!! Form::open(['method'=>'DELETE', 'url' => '/equipe_gestora/'.$rows5->id]) !!}
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows5->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
+                                            {!! Form::close() !!}
+                                        </td>
+                                        <?php $f++; ?>
                                     </tr>
                                 @endforeach
 
                             </table>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,6 @@ use App\Disciplina;
 use App\Ementario;
 use Illuminate\Http\Request;
 
-
 class EmentarioController extends Controller
 {
 
@@ -57,9 +56,9 @@ class EmentarioController extends Controller
         // $nomecurso = $id;
         //     $teste ='tiago';
 
-        return view('cursos.ementario')
+        return view('cursos.ementario');
 
-            ->with('teste', $teste);
+           // ->with('teste', $teste);
     }
 
     public function rel_qtdperiodo($id,$docx){

@@ -51,7 +51,7 @@ class LegislacaoController extends Controller
         $remover = Legislacao::findOrFail($id);
 
         $remover->delete();
-        \Session::flash('mensagem_sucesso', 'Cadastro removido com sucesso!');
+        \Session::flash('mensagem_destory', 'Cadastro removido com sucesso!');
         return Redirect::to('legislacao');
     }
 
@@ -84,9 +84,8 @@ class LegislacaoController extends Controller
         $getTable->lei = $request->input('lei');
         $getTable->ementa = $request->input('ementa');
         $getTable->save();
-        \Session::flash('mensagem_sucesso', 'Cadastro atualizado com sucesso!');
-        return Redirect::to('legislacao')
-            ->with('success','You have been successfully update data');
+        \Session::flash('mensagem_update', 'Cadastro atualizado com sucesso!');
+        return Redirect::to('legislacao');
 
     }
 

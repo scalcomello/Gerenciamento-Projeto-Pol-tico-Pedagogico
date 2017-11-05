@@ -9,7 +9,7 @@
 
         </h1>
         <ol class="breadcrumb">
-            <li><a href="home"><i class="fa fa-home"></i>Início</a></li>
+            <li><a href="bibliografia"><i class="fa  fa-book"></i>Bibliografia</a></li>
         </ol>
     </section>
 @endsection
@@ -41,12 +41,19 @@
 
                     <div class="box-body">
 
+                        <!-- Mensagem de Ação -->
                         @if(Session::has('mensagem_sucesso'))
-
                             <div class="callout callout-success">
                                 {{ Session::get('mensagem_sucesso') }}
                             </div>
-
+                        @elseif(Session::has('mensagem_update'))
+                            <div class="callout callout-warning">
+                                {{ Session::get('mensagem_update') }}
+                            </div>
+                        @elseif(Session::has('mensagem_destroy'))
+                            <div class="callout callout-danger">
+                                {{ Session::get('mensagem_destroy') }}
+                            </div>
                         @endif
 
                         <div class="box-body">
@@ -156,9 +163,9 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <div class="box-header with-border">
-                        <i class="ion ion-clipboard"></i>
-                        <h3 class="box-title">Bibliografias</h3>
-                        <button type="button"  onclick="javascript: location.href='{{ route('bibliografia.index') }}'" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Novo</button>
+                        <i class="fa fa-list-ul"></i>
+                        <h3 class="box-title">Lista de Livros</h3>
+                        <button type="button"  onclick="javascript: location.href='{{ route('bibliografia.index') }}'" title="Cadastrar novo livro" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Novo</button>
 
 
                     </div>
@@ -180,7 +187,7 @@
                                     <td>{{$i.'.'}}</td>
                                     <td>{{$rows->livro->autor}}</td>
                                     <td>{{$rows->livro->titulo}} : {{$rows->livro->subtitulo}}</td>
-                                    <td>{{$rows->livro->ano}}</td>
+                                    <td width="50">{{$rows->livro->ano}}</td>
 
                                     <td width="30">
                                         <a href="{{ route('bibliografia.referencia', ['id' => $rows->id ]) }}"
@@ -188,21 +195,24 @@
                                            data-placement="top"
                                            data-target="#myModa4{{$rows->id}}"
                                            data-toggle="modal" title="Editar"
-                                        > <i class="fa fa-edit"></i></a>
+                                        >
+                                            <button  title="Editar" class="btn btn-info"><i class="fa  fa-eye"></i> Visualizar</button>
+                                        </a>
+
                                     </td>
 
+                                    <td width="50"> <div class="tools">
+                                            <a href="{{ route('bibliografia.referencia', ['id' => $rows->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                        </div>
+                                    </td>
                                     <td width="50">
                                         {!! Form::open(['method'=>'DELETE', 'url' => '/bibliografia/'.$rows->id]) !!}
 
-                                        <button class="btn btn-default btn-sm type=" onclick="return confirm('Deseja remover este livro?')" type="submit"><i class="fa fa-trash-o"></i></button>
+                                        <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover a legislação {{$rows->lei}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                         {!! Form::close() !!}
-                                    </td>       <?php $i++;?>
-                                    <td width="50"> <div class="tools">
-                                            <a href="{{ route('bibliografia.referencia', ['id' => $rows->id ]) }}" class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-                                        </div>
-
                                     </td>
-                                </tr>
+
+                                </tr> <?php $i++;?>
                             @endforeach
                         </table>
                     </div>

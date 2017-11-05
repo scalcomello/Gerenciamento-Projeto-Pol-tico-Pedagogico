@@ -5,8 +5,8 @@
     <section class="content-header">
         <h1>Diretores de Campi</h1>
         <ol class="breadcrumb">
-            <li><a href=home><i class="fa fa-dashboard"></i> Ínicio</a></li>
-            <li><a href=colaboradores><i class="fa fa-dashboard"></i>Diretores de Campi</a></li>
+
+            <li><a href="diretores_de_campi"><i class="fa fa-bank"></i>Diretores de Campi</a></li>
         </ol>
     </section>
 @endsection
@@ -28,7 +28,7 @@
                                 <h3 class="box-title">Atualizar</h3>
                             @else
                                 <i class="fa fa-user-plus"></i>
-                                <h3 class="box-title">Cadastrar</h3>
+                                <h3 class="box-title">Cadastrar Diretor</h3>
                             @endif
                         </div>
 
@@ -42,27 +42,37 @@
 
                             {{ csrf_field() }}
                             <div class="box-body">
+                                <!-- Mensagem de Ação -->
                                 @if(Session::has('mensagem_sucesso'))
-
                                     <div class="callout callout-success">
                                         {{ Session::get('mensagem_sucesso') }}
                                     </div>
-
+                                @elseif(Session::has('mensagem_update'))
+                                    <div class="callout callout-warning">
+                                        {{ Session::get('mensagem_update') }}
+                                    </div>
+                                @elseif(Session::has('mensagem_destroy'))
+                                    <div class="callout callout-danger">
+                                        {{ Session::get('mensagem_destroy') }}
+                                    </div>
                                 @endif
 
-                                    <div class="form-group{{ $errors->has('diretor') ? ' has-error' : '' }}">
-                                        {!!  Form::label('diretor','Diretor',array('class' => 'col-sm-2 control-label')) !!}
-                                        <div class="col-sm-6">
-                                            {{ Form::select('diretor' ,$pessoas_nome,null,['class' => 'selectpicker','data-live-search'=> 'true', 'data-width'=>'auto'])  }}
-                                            @if ($errors->has('diretor'))
-                                                <span class="help-block"><strong>{{ $errors->first('diretor') }}</strong></span>
-                                            @endif
-                                        </div>
+
+                                <div class="form-group{{ $errors->has('pessoas_id') ? ' has-error' : '' }}">
+                                    {!!  Form::label('pessoas_id','Diretor',array('class' => 'col-sm-2 control-label')) !!}
+                                    <div class="col-sm-6">
+
+                                        {{ Form::select('pessoas_id' ,$pessoas_nome,null,['class' => 'selectpicker','data-live-search'=> 'true','data-show-subtext' => 'true', 'data-width'=>'auto'])  }}
+                                        @if ($errors->has('pessoas_id'))
+                                            <span class="help-block"><strong>{{ $errors->first('pessoas_id') }}</strong></span>
+                                        @endif
                                     </div>
+                                </div>
+
 
                                 <div class="form-group{{ $errors->has('campi') ? ' has-error' : '' }}">
                                     {!!  Form::label('campi','Campi',array('class' => 'col-sm-2 control-label')) !!}
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         {!! Form::input('text','campi',old('campi'),array('class' => 'form-control','placeholder' => 'Cidade do campi'))!!}
                                         @if ($errors->has('campi'))
                                             <span class="help-block"><strong>{{ $errors->first('campi') }}</strong></span>
@@ -88,7 +98,8 @@
                 <div class="col-md-13">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Campi Cadastrados</h3>
+                            <i class="ion ion-clipboard"></i>
+                            <h3 class="box-title">Lista de campi cadastrados</h3>
                         </div>
                         <!-- /.box-header -->
 
@@ -97,27 +108,30 @@
                             <table class="table table-bordered">
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>Campi</th>
                                     <th>Diretor</th>
+                                    <th>Campi</th>
                                     <th colspan="2">Ação</th>
                                 </tr>
                                 <?php $i=1;?>
                                 @foreach($diretores as $rows)
                                     <tr>
                                         <td>{{$i}}</td>
+                                        <td>{{$rows->pessoa->nome}}</td>
                                         <td>{{$rows->campi}}</td>
-                                        <td>{{$rows->diretor}}</td>
-                                        <td width="50">
-                                            <a href="{{ route('diretores.edit', ['id' => $rows->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+
+
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('diretores.edit', ['id' => $rows->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td><td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/diretores_de_campi/'.$rows->id]) !!}
-                                            <button class="btn btn-default btn-sm" type="submit"><i class="fa fa-trash-o"></i></button>
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o diretor {{$rows->pessoa->nome}} do campus {{$rows->campi}} ?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
-
                                         </td>
 
+
+
+                                        <?php $i++; ?>
                                     </tr>
                                 @endforeach
 

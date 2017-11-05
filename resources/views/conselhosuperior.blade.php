@@ -5,8 +5,7 @@
     <section class="content-header">
         <h1>Conselho Superior</h1>
         <ol class="breadcrumb">
-            <li><a href=home><i class="fa fa-dashboard"></i> Ínicio</a></li>
-            <li><a href=#><i class="fa fa-dashboard"></i>Conselho Superior</a></li>
+            <li><a href="conselhosuperior"><i class="fa fa-bookmark-o"></i>Conselho Superior</a></li>
         </ol>
     </section>
 @endsection
@@ -40,12 +39,19 @@
 
                             {{ csrf_field() }}
                             <div class="box-body">
+                                <!-- Mensagem de Ação -->
                                 @if(Session::has('mensagem_sucesso'))
-
                                     <div class="callout callout-success">
                                         {{ Session::get('mensagem_sucesso') }}
                                     </div>
-
+                                @elseif(Session::has('mensagem_update'))
+                                    <div class="callout callout-warning">
+                                        {{ Session::get('mensagem_update') }}
+                                    </div>
+                                @elseif(Session::has('mensagem_destroy'))
+                                    <div class="callout callout-danger">
+                                        {{ Session::get('mensagem_destroy') }}
+                                    </div>
                                 @endif
 
                                 <script>
@@ -110,7 +116,8 @@
                 <div class="col-md-6">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Representantes</h3>
+                            <i class="ion ion-clipboard"></i>
+                            <h3 class="box-title">Lista representantes</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -127,17 +134,18 @@
                                     <tr>
                                         <td>{{$i}}</td>
                                         <td>{{$rows->pessoa->nome}}</td>
-                                        <td width="50">
-                                            <a href="{{ route('conselho.edit', ['id' => $rows->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('conselho.edit', ['id' => $rows->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/conselhosuperior/'.$rows->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $i++; ?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -146,23 +154,22 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $j = 1;?>
                                 @foreach($repres_ministerio as $rows1)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$j}}</td>
                                         <td>{{$rows1->pessoa->nome}}</td>
-                                        <td width="50">
-                                            <a href="{{ route('conselho.edit', ['id' => $rows1->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('conselho.edit', ['id' => $rows1->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/conselhosuperior/'.$rows1->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows1->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $j++; ?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -171,24 +178,23 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $g = 1;?>
                                 @foreach($diretor as $rows2)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$g}}</td>
                                         <td>{{$rows2->pessoa->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('conselho.edit', ['id' => $rows2->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('conselho.edit', ['id' => $rows2->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/conselhosuperior/'.$rows2->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows2->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $g++; ?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -197,24 +203,23 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $m = 1;?>
                                 @foreach($corpo_docente as $rows3)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$m}}</td>
                                         <td>{{$rows3->pessoa->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('conselho.edit', ['id' => $rows3->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('conselho.edit', ['id' => $rows3->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/conselhosuperior/'.$rows3->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows3->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $m++; ?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -223,23 +228,22 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $q = 1;?>
                                 @foreach($corpo_discente as $rows4)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$m}}</td>
                                         <td>{{$rows4->pessoa->nome}}</td>
-                                        <td width="50">
-                                            <a href="{{ route('conselho.edit', ['id' => $rows4->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('conselho.edit', ['id' => $rows4->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
-
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/conselhosuperior/'.$rows4->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit">
-                                                <i class="fa fa-trash-o"> </i></button>
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows4->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $q++; ?>
                                     </tr>
                                 @endforeach
                             </table>
@@ -255,7 +259,8 @@
                 <div class="col-md-6">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Representantes</h3>
+                            <i class="ion ion-clipboard"></i>
+                            <h3 class="box-title">Lista representantes</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -266,24 +271,23 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $t = 1;?>
                                 @foreach($tec_administrativo as $rows5)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$t}}</td>
                                         <td>{{$rows5->pessoa->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('conselho.edit', ['id' => $rows5->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('conselho.edit', ['id' => $rows5->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/conselhosuperior/'.$rows5->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows5->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $t++; ?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -292,24 +296,23 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $r = 1;?>
                                 @foreach($egresso as $rows6)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$r}}</td>
                                         <td>{{$rows6->pessoa->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('conselho.edit', ['id' => $rows6->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('conselho.edit', ['id' => $rows6->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
-
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/conselhosuperior/'.$rows6->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows6->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $r++; ?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -318,24 +321,23 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $o = 1;?>
                                 @foreach($trabalhador as $rows7)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$o}}</td>
                                         <td>{{$rows7->pessoa->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('conselho.edit', ['id' => $rows7->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('conselho.edit', ['id' => $rows7->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
-
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/conselhosuperior/'.$rows7->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows7->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $o++; ?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -344,24 +346,23 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $p = 1;?>
                                 @foreach($publico_estatal as $rows8)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$p}}</td>
                                         <td>{{$rows8->pessoa->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('conselho.edit', ['id' => $rows8->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('conselho.edit', ['id' => $rows8->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
-
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/conselhosuperior/'.$rows8->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows8->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $p++; ?>
                                     </tr>
                                 @endforeach
                                 <tr>
@@ -370,24 +371,23 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $h = 1;?>
                                 @foreach($patronal as $rows9)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$h}}</td>
                                         <td>{{$rows9->pessoa->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('conselho.edit', ['id' => $rows9->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('conselho.edit', ['id' => $rows9->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/conselhosuperior/'.$rows9->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows9->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $h++; ?>
                                     </tr>
                                 @endforeach
 
@@ -397,24 +397,23 @@
 
                                     <th colspan="2">Ação</th>
                                 </tr>
-                                <?php $i = 1;?>
+                                <?php $z = 1;?>
                                 @foreach($membros_natos as $rows10)
                                     <tr>
-                                        <td>{{$i}}</td>
+                                        <td>{{$z}}</td>
                                         <td>{{$rows10->pessoa->nome}}</td>
 
-                                        <td width="50">
-                                            <a href="{{ route('conselho.edit', ['id' => $rows10->id ]) }}"
-                                               class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
-
+                                        <td width="50"> <div class="tools">
+                                                <a href="{{ route('conselho.edit', ['id' => $rows10->id ]) }}" ><button  title="Editar" class="btn btn-warning"><i class="fa fa-edit"></i> Editar</button></a>
+                                            </div>
                                         </td>
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' => '/conselhosuperior/'.$rows10->id]) !!}
-                                            <button class="btn btn-default btn-sm type=" type="submit"><i
-                                                        class="fa fa-trash-o"></i></button>
+
+                                            <a><button  class="btn btn-danger" onclick="return confirm('Deseja remover o colaborador {{$rows10->pessoa->nome}}?')"  title="Excluir" ><i class="fa fa-trash-o"></i> Excluir</button></a>
                                             {!! Form::close() !!}
-                                            <?php $i++; ?>
                                         </td>
+                                        <?php $z++; ?>
                                     </tr>
                                 @endforeach
                             </table>

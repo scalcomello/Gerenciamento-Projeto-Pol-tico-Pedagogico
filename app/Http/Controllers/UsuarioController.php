@@ -6,8 +6,6 @@ use App\User as Usuarios;
 use Illuminate\Http\Request;
 use Input, Redirect;
 
-
-
 class UsuarioController extends Controller
 {
 
@@ -18,10 +16,8 @@ class UsuarioController extends Controller
 
         public function index()
     {
-       // $users = Usuarios::all();
-        $users = Usuarios::
-            orderBy('name', 'asc')
-            ->get();
+
+        $users = Usuarios::orderBy('name', 'asc')->get();
 
         return view('usuarios.usuarios')->with('usuarios', $users);
 
@@ -29,7 +25,6 @@ class UsuarioController extends Controller
 
         public function create()
     {
-
         return view('usuarios.novousuario');
     }
 
@@ -40,7 +35,6 @@ class UsuarioController extends Controller
             'name' => 'required|string|min:3|max:50',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-
 
         ]);
         if($validator->fails()){
@@ -57,7 +51,7 @@ class UsuarioController extends Controller
         $getTable->password = bcrypt($request->input('password'));
         $getTable->save();
 
-        \Session::flash('mensagem_sucesso', 'Usuário  criado com sucesso!');
+        \Session::flash('mensagem_sucesso', 'Usuário  cadastrado com sucesso!');
         return back();
     }
 
@@ -96,7 +90,7 @@ class UsuarioController extends Controller
             $getTable->password = bcrypt($request->input('password'));
             $getTable->save();
 
-            \Session::flash('mensagem_sucesso', 'Usuário atualizado com sucesso!');
+            \Session::flash('mensagem_update', 'Usuário atualizado com sucesso!');
             return back();
 
         }
@@ -107,7 +101,7 @@ class UsuarioController extends Controller
 
         $usuario->delete();
 
-        \Session::flash('mensagem_sucesso', 'Usuário removido com sucesso!');
+        \Session::flash('mensagem_destroy', 'Usuário removido com sucesso!');
         return back();
     }
 

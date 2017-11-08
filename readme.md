@@ -13,9 +13,9 @@ Tecnologias utilizadas: PHP 7, Laravel, PHPDOCX, jQuery, HTML5, CSS3, Bootstrap,
 ## Desenvolvimento
 Para executar o código no seu ambiente de desenvolvimento:
 
-1.Clone este repo
-2.executar `npm install`
-3.executar `bower install`
+1.Clone este repo<br>
+2.executar `npm install`<br>
+3.executar `bower install`<br>
 
 Agora, com todas as dependências instaladas
 Inicie o servidor de desenvolvimento para o projeto de demonstração com `npm run dev` ou `php artisan serve`

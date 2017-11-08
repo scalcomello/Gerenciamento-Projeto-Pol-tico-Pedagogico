@@ -1,3 +1,14 @@
+## Desenvolvimento
+Para executar o código no seu ambiente de desenvolvimento:
+
+1.Clone este repo
+2.executar npm install
+3.executar bower install
+
+Agora, com todas as dependências instaladas
+Inicie o servidor de desenvolvimento para o projeto de demonstração com npm run dev ou php artisan serve
+Entre no seu navegador em http://localhost:8000
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">

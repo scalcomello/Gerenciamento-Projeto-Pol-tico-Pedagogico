@@ -4,7 +4,7 @@
 
 ## Objetivos
   
-  O objetivo do software é auxiliar na construção e padronização de documentos de gestão escolar, mas especificamente os Projetos Pedagógicos de Curso (PPC), buscando consolidar as diretrizes para a elaboração dos PPCs do IFSULDEMINAS Campus Machado.Com finalidade de auxiliar todos os envolvidos na gestão do Progeto Político de Curso, permitindo acompanhar o processo desda sua elaboração/atualização até sua efetiva conclusão.  O gerenciamento abrange informações completas sobre o projeto político de curso, tais como os dados da (instituição, servidores, cursos, professores etc.), o sistema permite que acompanhe a evolução do projeto e as alterações realizadas. É importante observar que todos os tipos de exigencias feitas pelo MEC já estão previamente definidos no SGPPC, assim como os moldes do projeto.
+  O objetivo do software é auxiliar na construção e padronização de documentos de gestão escolar, mas especificamente os Projetos Pedagógicos de Curso (PPC), buscando consolidar as diretrizes para a elaboração dos PPCs do IFSULDEMINAS Campus Machado.Com finalidade de auxiliar todos os envolvidos na gestão do Progeto Político de Curso, permitindo acompanhar o processo desda sua elaboração/atualização até sua efetiva conclusão.  O gerenciamento abrange informações completas sobre o projeto político de curso, tais como os dados da (instituição, servidores, cursos, professores etc.), o sistema permite que acompanhe a evolução do projeto e as alterações realizadas. É importante observar que todos os tipos de exigencias feitas pelo Ministerio da Educação (MEC) já estão previamente definidos no SGPPC, assim como os moldes do projeto.
 
 link.pdf - TCC escrito<br>
 vídeo - Trailer do software<br>

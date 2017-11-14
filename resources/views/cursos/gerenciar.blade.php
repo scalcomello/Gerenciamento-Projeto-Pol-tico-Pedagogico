@@ -123,7 +123,7 @@
                                 <div class="icon">
                                     {!! Html::image('bootstrap/icon/group-of-people-in-a-formation.png') !!}
                                 </div>
-                                <a href="gerenciar/ementario" class="small-box-footer">Acessar <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="gerenciar/corpo_administrativo" class="small-box-footer">Acessar <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
@@ -155,7 +155,7 @@
                                 <div class="icon">
                                     {!! Html::image('bootstrap/icon/manager.png') !!}
                                 </div>
-                                <a href="#" class="small-box-footer">Acessar <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="gerenciar/coordenacao" class="small-box-footer">Acessar <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
 

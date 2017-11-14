@@ -50,6 +50,8 @@
         Route::delete('{id}', ['uses' => 'Equipe_gestoraController@destroy', 'as' => 'destroy']);
     });//fim equipegestora
 
+
+
     Route::group(['as' => 'legislacao.', 'prefix' => 'legislacao'], function () {
         Route::get('', ['uses' => 'LegislacaoController@index', 'as' => 'index']);
         Route::post('salvar', ['uses' => 'LegislacaoController@store', 'as' => 'store']);
@@ -113,10 +115,23 @@
         Route::get('{id}/gerenciar/legislacao', ['uses' => 'Legislacao_cursoController@index']);
         Route::post('salvar/legislacao', ['uses' => 'Legislacao_cursoController@store_legislacao', 'as' => 'store_legislacao']);
         Route::delete('legislacao/{curso}', ['uses' => 'Legislacao_cursoController@destroy_legislacao', 'as' => 'destroy_legislacao']);
+
         //Corpo Docente
-        Route::get('{curso}/gerenciar/corpo_docente', ['uses' => 'Corpo_docenteController@index_corpo_docente', 'as' => 'index_']);
+        Route::get('{curso}/gerenciar/corpo_docente', ['uses' => 'Corpo_docenteController@index_corpo_docente', 'as' => 'index_corpo_docente']);
         Route::post('salvar/corpo_docente', ['uses' => 'Corpo_docenteController@store_corpodocente', 'as' => 'store_corpodocente']);
         Route::delete('corpo_docente/{curso}', ['uses' => 'Corpo_docenteController@destroy_corpodocente', 'as' => 'destroy_corpodocente']);
+
+        //Corpo Administrativo
+        Route::get('{curso}/gerenciar/corpo_administrativo', ['uses' => 'Corpo_administrativoController@index_corpo_administrativo', 'as' => 'index_corpo_administrativo']);
+        Route::post('salvar/corpo_administrativo', ['uses' => 'Corpo_administrativoController@store_administrativo', 'as' => 'store_administrativo']);
+        Route::delete('corpo_administrativo/{curso}', ['uses' => 'Corpo_administrativoController@destroy_administrativo', 'as' => 'destroy_administrativo']);
+
+        //Coordenacao
+        Route::get('{curso}/gerenciar/coordenacao', ['uses' => 'CursoController@index_coordenacao', 'as' => 'index_coordenacao']);
+        //Route::post('salvar/corpo_docente', ['uses' => 'Corpo_docenteController@store_corpodocente', 'as' => 'store_corpodocente']);
+        //Route::delete('corpo_docente/{curso}', ['uses' => 'Corpo_docenteController@destroy_corpodocente', 'as' => 'destroy_corpodocente']);
+
+
         //Categoria
        // Route::get('{id}/gerenciar/categorias/editar', ['uses' => 'CategoriaController@edit']);
        // Route::get('{id}/gerenciar/categorias', ['uses' => 'CategoriaController@manageCategory']);

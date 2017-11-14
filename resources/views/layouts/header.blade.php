@@ -7,24 +7,32 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.6 -->
-    <link href="{{ asset("/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset("/plugins/datatables/dataTables.bootstrap.css") }}" rel="stylesheet"
-          type="text/css">
+    <link rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css">
+
     <!-- jvectormap -->
-    <link href="{{ asset("/plugins/jvectormap/jquery-jvectormap-1.2.2.css") }}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+
+    <link rel="stylesheet" href="/dist/css/skins/skin-blue.min.css">
+
     <!-- Theme style -->
     <link href="{{ asset("/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
+
     <link href="{{ asset("/dist/jquery.loading.css")}}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/dist/jquery.loading.css">
+
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
-    <link href="{{ asset("/dist/css/skins/skin-blue.min.css")}}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/dist/css/skins/skin-blue.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

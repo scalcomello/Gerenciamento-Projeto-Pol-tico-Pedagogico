@@ -12,9 +12,10 @@
         </h1>
         <ol class="breadcrumb">
 
-            <li><a href="home">Cursos</a></li>
-            <li><a href="home">Gerenciar</a></li>
-            <li><a href="home">Estrutura Documental</a></li>
+            <li><a href="../../../cursos"><i class="fa fa-graduation-cap"></i>Cursos</a></li>
+            <li><a href="../gerenciar"><i class=""></i>Gerenciar</a></li>
+            <li class="active"><a href="estrutura_documental"><i class=""></i>Estrutura documental</a></li>
+
         </ol>
     </section>
 @endsection

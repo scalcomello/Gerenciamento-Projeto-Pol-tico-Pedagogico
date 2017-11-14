@@ -25,6 +25,15 @@ class CursoController extends Controller
         return view('cursos.curso')->with('curso', $curso);
     }
 
+    public function index_coordenacao($curso)
+    {
+        $curso = Curso::find($curso);
+
+        return view('cursos.coordenacao')->with('curso', $curso);
+    }
+
+
+
     public function create()
     {
         return view('cursos.novocurso');

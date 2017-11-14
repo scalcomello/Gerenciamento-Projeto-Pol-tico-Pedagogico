@@ -72,7 +72,7 @@
                 <div class="col-md-13">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Legislação Referencial</h3>
+                            <h3 class="box-title">Titulação e regime de trabalho dos docentes</h3>
                         </div>
                         <!-- /.box-header -->
 
@@ -81,7 +81,10 @@
                             <table class="table table-bordered">
                                 <tr>
 
-                                    <th>Legislação</th>
+                                    <th>Professor</th>
+                                    <th>Titulação Máxima</th>
+                                    <th>Regime de Trabalho</th>
+
                                     <th width="50" >Ação</th>
                                 </tr>
 
@@ -89,6 +92,8 @@
                                     <tr>
 
                                         <td>{{$rows->pessoa->nome}}</td>
+                                        <td></td>
+                                        <td></td>
 
                                         <td width="50">
                                             {!! Form::open(['method'=>'DELETE', 'url' =>'/cursos/corpo_docente/'. $rows->id]) !!}

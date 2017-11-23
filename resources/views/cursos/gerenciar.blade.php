@@ -1,9 +1,11 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('title_page')
+@section('title', 'Usuários')
 
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+
+@section('content_header')
+
+
         <h1>
             {{$nomecurso->denominacao}}
 
@@ -13,12 +15,12 @@
             <li class="active"><a href="gerenciar"><i class=""></i>Gerenciar</a></li>
 
         </ol>
-    </section>
 
 
-@endsection
-@section('content_page')
 
+@stop
+
+@section('content')
 
 
     <div class="box box-primary">
@@ -48,7 +50,7 @@
                             <div class="small-box bg-lime-active">
                                 <div class="inner">
 
-                                    <h4>Estrutura Curricular</h4>
+                                    <h4>Organização Curricular</h4>
                                    <br><br>
                                 </div>
                                 <div class="icon">
@@ -98,7 +100,7 @@
                                 <div class="inner">
 
 
-                                    <h4>Estrutura Documental</h4>
+                                    <h4>Elementos e Estrutura</h4>
                                     <br><br>
                                 </div>
                                 <div class="icon">
@@ -149,7 +151,7 @@
                                 <div class="inner">
 
 
-                                    <h4>Coordenação</h4>
+                                    <h4>Dados do Curso</h4>
                                     <br><br>
                                 </div>
                                 <div class="icon">
@@ -172,15 +174,12 @@
 
 
 
+@stop
 
-@endsection
+@section('css')
+    <link rel="stylesheet" href="#">
+@stop
 
-@section('scripts')
-
-    <script type="text/javascript">
-        $(function () {
-            //alert('Teste section');
-        });
-    </script>
-
-@endsection
+@section('js')
+    <script>  </script>
+@stop

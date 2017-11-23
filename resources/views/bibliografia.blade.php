@@ -1,9 +1,8 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('title_page')
+@section('title', 'Usuários')
 
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+@section('content_header')
         <h1>
             Bibliografia
 
@@ -11,9 +10,9 @@
         <ol class="breadcrumb">
             <li><a href="bibliografia"><i class="fa  fa-book"></i>Bibliografia</a></li>
         </ol>
-    </section>
-@endsection
-@section('content_page')
+    @stop
+
+    @section('content')
 
 
 
@@ -165,7 +164,7 @@
                     <div class="box-header with-border">
                         <i class="fa fa-list-ul"></i>
                         <h3 class="box-title">Lista de Livros</h3>
-                        <button type="button"  onclick="javascript: location.href='{{ route('bibliografia.index') }}'" title="Cadastrar novo livro" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Novo</button>
+                        <button type="button"  onclick="location.href='{{ route('bibliografia.index') }}'" title="Cadastrar novo livro" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Novo</button>
 
 
                     </div>
@@ -233,14 +232,14 @@
                     @endforeach
 
 
-        @endsection
+                    </div></div></div></div>
 
-@section('scripts')
+                    @stop
 
-    <script type="text/javascript">
-        $(function () {
-            //alert('Teste section');
-        });
-    </script>
+                    @section('css')
+                        <link rel="stylesheet" href="#">
+                    @stop
 
-@endsection
+                    @section('js')
+                        <script>  </script>
+@stop

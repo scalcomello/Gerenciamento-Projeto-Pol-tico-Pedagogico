@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('title_page')
+@section('title', 'Usuários')
 
 
+@section('content_header')
 
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+
         <h1>
 
 {{$nomecurso->denominacao}}
@@ -17,9 +17,11 @@
             <li class="active"><a href="estrutura_documental"><i class=""></i>Estrutura documental</a></li>
 
         </ol>
-    </section>
-@endsection
-@section('content_page')
+
+
+@stop
+
+@section('content')
 
 
     <section class="content">
@@ -118,13 +120,21 @@
 
 
 
-@endsection
+@stop
+
+@section('css')
+
+@stop
+
+@section('js')
+
+    <!-- jQuery 2.2.3 -->
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="/bower_components/jquery-ui/jquery-ui.min.js"></script>
 
 
-@section('scripts')
-    <script type="text/javascript">
-        $(function () {
-            // alert('Teste section');
-        });
-    </script>
-@endsection
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="/dist/js/pages/dashboard.js"></script>
+
+@stop

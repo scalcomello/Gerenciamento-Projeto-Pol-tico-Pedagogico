@@ -1,10 +1,15 @@
 <?php
 
     Route::group(['middleware' => 'web'], function () {
+
     Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'home']); //inicio
     Route::post('notificacao', ['uses' => 'HomeController@notificacao', 'as' => 'notificacao']);//cadastrar notificação
-    //Route::get('/menu', ['uses' => 'MenuController@menu']); //inicio
-    //Route::get('menu/edit', ['uses' => 'MenuController@menustore']);//cadastrar notificação
+
+    Route::get('edit', ['uses' => 'HomeController@edit', 'as' => 'edit']);
+    Route::patch('home/{id}', ['uses' => 'HomeController@update', 'as' => 'update']);
+    Route::delete('home/{id}', ['uses' => 'HomeController@destroy', 'as' => 'destroy']);
+
+
     Route::get('/', ['uses' => 'HomeController@index', 'as' => 'login']);  //tela de login
 
     Auth::routes();
@@ -16,6 +21,10 @@
         Route::get('{id}/perfil', ['uses' => 'UsuarioController@perfil', 'as' => 'perfil']);//somente em usuario porque possui 2 campos de edição
         Route::patch('{id}', ['uses' => 'UsuarioController@update', 'as' => 'update']);
         Route::delete('{id}', ['uses' => 'UsuarioController@destroy', 'as' => 'destroy']);
+
+        Route::get('permissao', ['uses' => 'UsuarioController@permission', 'as' => 'permission']);
+        Route::delete('/permissao/{id}', ['uses' => 'UsuarioController@destroy_permission', 'as' => 'destroy_permission']);
+        Route::post('permissao/salvar', ['uses' => 'UsuarioController@store_permission', 'as' => 'store_permission']);
     });// fim user
 
     Route::group(['as' => 'ministerio.', 'prefix' => 'ministerio_da_educacao'], function () {
@@ -188,3 +197,6 @@
         // list all lfm routes here...
     });
 });// fim middleware
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

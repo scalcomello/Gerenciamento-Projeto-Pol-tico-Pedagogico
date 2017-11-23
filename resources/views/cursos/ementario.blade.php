@@ -1,9 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('title_page')
+@section('title', 'Usuários')
 
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+
+@section('content_header')
+
         <h1>
             Ementário -
             @foreach($disciplinas_nome as $line)
@@ -13,9 +14,11 @@
         <ol class="breadcrumb">
             <li><a href="home"><i class="fa fa-home"></i>Início</a></li>
         </ol>
-    </section>
-@endsection
-@section('content_page')
+
+@stop
+
+@section('content')
+
 
 
     <!-- Main content -->
@@ -147,14 +150,13 @@
         </div></div>
 
 
-            @endsection
 
-@section('scripts')
+@stop
 
-    <script type="text/javascript">
-        $(function () {
-            //alert('Teste section');
-        });
-    </script>
+@section('css')
+    <link rel="stylesheet" href="#">
+@stop
 
-@endsection
+@section('js')
+    <script>  </script>
+@stop

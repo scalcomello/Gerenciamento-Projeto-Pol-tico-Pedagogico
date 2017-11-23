@@ -25,18 +25,16 @@ class ColaboradoresController extends Controller
 
     public function store(Request $request)
     {
+
+       // $this->authorize('excluir_colaborador');
         $validator = validator($request->all(), [
-
             'nome' => 'required|string|min:3|max:50|unique:pessoas'
-
         ]);
         if ($validator->fails()) {
             return Redirect('colaboradores')
                 ->withErrors($validator)
                 ->withInput();
-
         }
-
         $getTable = new Colaboradores();
         $getTable->nome = $request->input('nome');
         $getTable->cargo = $request->input('cargo');

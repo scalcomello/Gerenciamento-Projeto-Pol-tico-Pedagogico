@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -183,9 +183,12 @@ return [
         Yajra\Datatables\DatatablesServiceProvider::class,
 
         ConsoleTVs\Charts\ChartsServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        JeroenNoten\LaravelAdminLte\ServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class
     ],
 
     /*

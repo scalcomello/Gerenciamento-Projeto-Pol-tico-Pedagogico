@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('title_page')
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+@section('title', 'Usuários')
+
+
+@section('content_header')
+
         <h1>{{$curso->denominacao}} - Colaboradores</h1>
         <ol class="breadcrumb">
             <li><a href="../../../cursos"><i class="fa fa-graduation-cap"></i>Cursos</a></li>
@@ -10,10 +12,9 @@
             <li class="active"><a href="corpo_docente"><i class=""></i>Corpo Docente</a></li>
         </ol>
     </section>
-@endsection
-@section('content_page')
+@stop
 
-    @include('layouts.sidebar')
+@section('content')
 
     <!-- Main content -->
     <section class="content">
@@ -115,13 +116,12 @@
     <!-- /.box -->
 
 
-@endsection
+@stop
 
+@section('css')
+    <link rel="stylesheet" href="#">
+@stop
 
-@section('scripts')
-    <script type="text/javascript">
-        $(function () {
-            //alert('Teste section usuarios');
-        });
-    </script>
-@endsection
+@section('js')
+    <script>  </script>
+@stop

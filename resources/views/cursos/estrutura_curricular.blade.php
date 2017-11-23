@@ -1,20 +1,19 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('title_page')
+@section('title', 'Usuários')
 
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+
+@section('content_header')
+
         <h1>{{$curso->denominacao}} - Estrutura Curricular</h1>
         <ol class="breadcrumb">
             <li><a href="../../../cursos"><i class="fa fa-graduation-cap"></i>Cursos</a></li>
             <li class="active"><a href="../gerenciar"><i class=""></i>Gerenciar</a></li>
             <li class="active"><a href="estrutura_curricular"><i class=""></i>Estrutura curricular</a></li>
         </ol>
-    </section>
-@endsection
+@stop
 
-@section('content_page')
-
+@section('content')
 
     <section class="content">
         <!-- Small boxes (Stat box) -->
@@ -491,12 +490,12 @@
                 </script>
             @endif
 
-            @endsection
+@stop
 
-            @section('scripts')
-                <script type="text/javascript">
-                    $(function () {
-                        //alert('Teste section usuarios');
-                    });
-                </script>
-@endsection
+@section('css')
+    <link rel="stylesheet" href="#">
+@stop
+
+@section('js')
+    <script>  </script>
+@stop

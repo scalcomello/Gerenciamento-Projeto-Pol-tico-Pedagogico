@@ -1,18 +1,19 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('title_page')
+@section('title', 'Usuários')
 
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+
+@section('content_header')
         <h1>{{$curso->denominacao}} - Legislação Curso</h1>
         <ol class="breadcrumb">
             <li><a href="../../../cursos"><i class="fa fa-graduation-cap"></i>Cursos</a></li>
             <li class="active"><a href="../gerenciar"><i class=""></i>Gerenciar</a></li>
             <li class="active"><a href="legislacao"><i class=""></i>Legislação</a></li>
         </ol>
-    </section>
-@endsection
-@section('content_page')
+
+@stop
+
+@section('content')
 
 
 
@@ -126,14 +127,12 @@
 
 
 
-@endsection
+@stop
 
-@section('scripts')
+@section('css')
+    <link rel="stylesheet" href="#">
+@stop
 
-    <script type="text/javascript">
-        $(function () {
-            //alert('Teste section');
-        });
-    </script>
-
-@endsection
+@section('js')
+    <script>  </script>
+@stop

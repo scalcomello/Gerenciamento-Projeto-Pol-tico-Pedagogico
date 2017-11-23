@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 namespace App\Http\Controllers;
 use App\Conselhosuperior as Conselho;
+use App\Grupo_conselhosuperior;
 use App\Pessoa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -19,37 +20,17 @@ class ConselhosuperiorController extends Controller
 
     public function index()
     {
-        // $conselho = Conselho::all();
 
-        $presidente = Conselho::where('titulo', '=', 'presidente')->with('pessoa')->get();
-        $repres_ministerio = Conselho::where('titulo', '=', 'repres_ministerio')->with('pessoa')->get();
-        $diretor = Conselho::where('titulo', '=', 'diretor')->with('pessoa')->get();
-        $corpo_docente = Conselho::where('titulo', '=', 'corpo_docente')->with('pessoa')->get();
-        $corpo_discente = Conselho::where('titulo', '=', 'corpo_discente')->with('pessoa')->get();
-        $tec_administrativo = Conselho::where('titulo', '=', 'tec_administrativo')->with('pessoa')->get();
-        $egresso = Conselho::where('titulo', '=', 'egresso')->with('pessoa')->get();
-        $trabalhador = Conselho::where('titulo', '=', 'trabalhador')->with('pessoa')->get();
-        $publico_estatal = Conselho::where('titulo', '=', 'publico_estatal')->with('pessoa')->get();
-        $patronal = Conselho::where('titulo', '=', 'patronal')->with('pessoa')->get();
-        $membros_natos = Conselho::where('titulo', '=', 'mebros_natos')->with('pessoa')->get();
-
+        $grupoconselho = Grupo_conselhosuperior::all();
         $pessoas_nome = Pessoa::orderBy('nome', 'asc')->pluck('nome','id');
+        $grupolist = Grupo_conselhosuperior::pluck('nomegrupo','id');
+        $integrante = Conselho::with('pessoa')->get();
 
-
-
-
-        return view('conselhosuperior')->with('presidente', $presidente)
-            ->with('repres_ministerio', $repres_ministerio)
-            ->with('diretor', $diretor)
-            ->with('corpo_docente', $corpo_docente)
-            ->with('corpo_discente', $corpo_discente)
-            ->with('tec_administrativo', $tec_administrativo)
-            ->with('egresso', $egresso)
-            ->with('trabalhador', $trabalhador)
-            ->with('publico_estatal', $publico_estatal)
+        return view('conselhosuperior')
             ->with('pessoas_nome', $pessoas_nome)
-            ->with('patronal', $patronal)
-            ->with('membros_natos', $membros_natos);
+            ->with('grupoconselho', $grupoconselho)
+            ->with('integrante', $integrante)
+            ->with('grupolist', $grupolist);
 
     }
 
@@ -57,7 +38,7 @@ class ConselhosuperiorController extends Controller
     {
         $getTable = new Conselho();
         $getTable->pessoas_id = $request->input('pessoas_id');
-        $getTable->titulo = $request->input('titulo');
+        $getTable->grupo_conselhosuperior_id = $request->input('grupo_conselhosuperior_id');
         $getTable->save();
 
         \Session::flash('mensagem_sucesso', 'Cadastro realizado com sucesso!');
@@ -77,35 +58,16 @@ class ConselhosuperiorController extends Controller
     {
         $edit = Conselho::findOrFail($id);
 
-        $presidente = Conselho::where('titulo', '=', 'presidente')->with('pessoa')->get();
-        $repres_ministerio = Conselho::where('titulo', '=', 'repres_ministerio')->with('pessoa')->get();
-        $diretor = Conselho::where('titulo', '=', 'diretor')->with('pessoa')->get();
-        $corpo_docente = Conselho::where('titulo', '=', 'corpo_docente')->with('pessoa')->get();
-        $corpo_discente = Conselho::where('titulo', '=', 'corpo_discente')->with('pessoa')->get();
-        $tec_administrativo = Conselho::where('titulo', '=', 'tec_administrativo')->with('pessoa')->get();
-        $egresso = Conselho::where('titulo', '=', 'egresso')->with('pessoa')->get();
-        $trabalhador = Conselho::where('titulo', '=', 'trabalhador')->with('pessoa')->get();
-        $publico_estatal = Conselho::where('titulo', '=', 'publico_estatal')->with('pessoa')->get();
-        $patronal = Conselho::where('titulo', '=', 'patronal')->with('pessoa')->get();
-        $membros_natos = Conselho::where('titulo', '=', 'mebros_natos')->with('pessoa')->get();
+        $grupoconselho = Grupo_conselhosuperior::all();
+        $pessoas_nome = Pessoa::orderBy('nome', 'asc')->pluck('nome','id');
+        $grupolist = Grupo_conselhosuperior::pluck('nomegrupo','id');
+        $integrante = Conselho::with('pessoa')->get();
 
-        $pessoas_nome = Pessoa::pluck('nome','id');
-
-
-        return view('conselhosuperior')->with('presidente', $presidente)
-            ->with('repres_ministerio', $repres_ministerio)
-            ->with('diretor', $diretor)
-            ->with('corpo_docente', $corpo_docente)
-            ->with('corpo_discente', $corpo_discente)
-            ->with('tec_administrativo', $tec_administrativo)
-            ->with('egresso', $egresso)
-            ->with('trabalhador', $trabalhador)
-            ->with('publico_estatal', $publico_estatal)
+        return view('conselhosuperior')
             ->with('pessoas_nome', $pessoas_nome)
-            ->with('patronal', $patronal)
-            ->with('edit', $edit)
-            ->with('membros_natos', $membros_natos);
-
+            ->with('grupoconselho', $grupoconselho)
+            ->with('integrante', $integrante)
+            ->with('grupolist', $grupolist);
     }
 
     function update($id, Request $request)
@@ -113,13 +75,12 @@ class ConselhosuperiorController extends Controller
 
         $getTable = Conselho::find($id);
         $getTable->pessoas_id = $request->input('pessoas_id');
-        $getTable->titulo = $request->input('titulo');
+        $getTable->grupo_conselhosuperior_id = $request->input('grupo_conselhosuperior_id');
         $getTable->save();
 
         \Session::flash('mensagem_update', 'Cadastro atualizado com sucesso!');
         return Redirect::to('conselhosuperior')
             ->with('success', 'You have been successfully update data');
-
     }
 
     public function rel_conselhosuperior($docx)

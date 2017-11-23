@@ -48,6 +48,10 @@ class LegislacaoController extends Controller
 
     public function destroy($id)
     {
+        $perfil = 2;
+        $this->authorize('isadmin', $perfil);
+        //$this->authorize('isprofessor');
+
         $remover = Legislacao::findOrFail($id);
 
         $remover->delete();

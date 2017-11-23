@@ -34,29 +34,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
 
-<!-- PACE -->
-<script src="/plugins/pace/pace.min.js"></script>
-<script type="text/javascript">
-    // To make Pace works on Ajax calls
-    $(document).ajaxStart(function () {
-        Pace.restart();
-    });
-    $('.ajax').click(function () {
-        $.ajax({
-            url: '#', success: function (result) {
-                $('.ajax-content').html('<hr>Ajax Request Completed !');
-            }
-        });
-    });
-
-
-</script>
-
-<!-- DataTables -->
-<script src="{{ asset ("/plugins/datatables/jquery.dataTables.min.js") }}" type="text/javascript" ></script>
-<script src="{{ asset ("/plugins/datatables/dataTables.bootstrap.min.js") }}" type="text/javascript" ></script>
-
-
 
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

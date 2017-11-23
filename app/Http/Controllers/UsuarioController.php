@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Permission;
+use App\Permission_role;
+use App\Role;
+use App\Role_user;
 use App\User as Usuarios;
 use Illuminate\Http\Request;
 use Input, Redirect;
+use Illuminate\Support\Facades\DB;
 
 class UsuarioController extends Controller
 {
@@ -17,11 +22,64 @@ class UsuarioController extends Controller
         public function index()
     {
 
-        $users = Usuarios::orderBy('name', 'asc')->get();
+        $users = Usuarios::with('perfil')->orderBy('name', 'asc')->get();
 
         return view('usuarios.usuarios')->with('usuarios', $users);
 
     }
+
+    /**
+     * @param Usuarios $user
+     * @return mixed
+     */
+    public function permission()
+    {
+
+       $role1= DB::table('roles')->count();
+       $role = Role::select('id','label')->get();
+
+       $permission = Permission_role::select('permission_id','role_id','id')->with('role')->get();
+        $permission_role = Permission_role::all();
+
+        $permissionlist = Permission::pluck('label','id');
+        $rolelist = Role::pluck('label','id');
+
+
+        return view('usuarios.permissao')
+            ->with('permission_role',$permission_role)
+            ->with('permission',$permission)
+            ->with('permissionlist',$permissionlist)
+            ->with('rolelist',$rolelist)
+            ->with('role',$role);
+
+
+    }
+
+    public function store_permission(Request $request)
+    {
+
+        $getTable = new Permission_role();
+        $getTable->permission_id = $request->input('permission_id');
+        $getTable->role_id = $request->input('role_id');
+        $getTable->save();
+
+        \Session::flash('mensagem_sucesso', 'Permissão concedida com sucesso!');
+        return back();
+    }
+
+
+    public function destroy_permission($id)
+    {
+        $permission = Permission_role::findOrFail($id);
+
+        $permission->delete();
+
+        \Session::flash('mensagem_destroy', 'Permissão de acesso removida com sucesso!');
+        return back();
+    }
+
+
+
 
         public function create()
     {

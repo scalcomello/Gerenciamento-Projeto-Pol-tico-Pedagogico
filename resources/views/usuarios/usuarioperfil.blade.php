@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('title_page')
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+@section('title', 'Usuários')
+
+
+@section('content_header')
+
         <h1>Perfil Usuário</h1>
 
         <ol class="breadcrumb">
@@ -10,11 +12,10 @@
             <li class="active">Usuários</li>
             <li class="active">Perfil</li>
         </ol>
-    </section>
-@endsection
-@section('content_page')
 
-    @include('layouts.sidebar')
+@stop
+
+@section('content')
 
 
 
@@ -117,15 +118,12 @@
 
 
 
-@endsection
+@stop
 
-@section('scripts')
+@section('css')
+    <link rel="stylesheet" href="#">
+@stop
 
-    <script type="text/javascript">
-        $(function () {
-            //alert('Teste section usuarios');
-
-        });
-    </script>
-
-@endsection
+@section('js')
+    <script>  </script>
+@stop

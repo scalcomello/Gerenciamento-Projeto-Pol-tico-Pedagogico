@@ -16,7 +16,7 @@ class EmentarioController extends Controller
         $this->middleware('auth');
     }
 
-    public function index($id,$iddisp)
+    public function index_ementario($id,$iddisp)
     {
 
         $disciplina = Ementario::where('cursos_id', '=', $id)

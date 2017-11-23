@@ -1,18 +1,20 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('title_page')
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+@section('title', 'Usuários')
+
+
+@section('content_header')
+
         <h1>Ministerio da Educação</h1>
         <ol class="breadcrumb">
 
             <li><a href=ministerio_da_educacao><i class="fa fa-asterisk"></i> Ministerio da Educação</a></li>
         </ol>
-    </section>
-@endsection
-@section('content_page')
 
-    @include('layouts.sidebar')
+@stop
+
+@section('content')
+
 
     <!-- Main content -->
     <section class="content">
@@ -344,13 +346,12 @@
     </section>
 
     <!-- /.box -->
+@stop
 
-@endsection
+@section('css')
 
-@section('scripts')
-    <script type="text/javascript">
-        $(function () {
-            //alert('Teste section usuarios');
-        });
-    </script>
-@endsection
+@stop
+
+@section('js')
+    <script>  </script>
+@stop

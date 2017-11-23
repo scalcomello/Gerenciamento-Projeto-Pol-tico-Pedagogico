@@ -14,4 +14,9 @@ class Conselhosuperior extends Model
     {
         return $this->belongsTo('App\Pessoa','pessoas_id');
     }
+
+    public function grupo_conselhosuperior()
+    {
+        return $this->belongsTo('App\Grupo_conselhosuperior','grupo_conselhosuperior_id');
+    }
 }

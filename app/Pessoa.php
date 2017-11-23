@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class pessoa extends Model
 {
-    protected $table = 'pessoas';
 
     public $timestamps = true;
+    protected $table = 'pessoas';
 
     public function conselho()
     {

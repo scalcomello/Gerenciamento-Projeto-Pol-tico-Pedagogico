@@ -29,7 +29,7 @@ Gerenciamento de Instituições<br>
 
 ## Demo
 http://209.222.10.209/login<br>
-Usuário: admin@admin.com.br<br>
+Usuário: admin@admin.com<br>
 Senha: ****<br>
 
 ## License
